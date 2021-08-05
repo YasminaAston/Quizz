@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 
 
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.aston.quizzapp.R;
+import org.aston.quizzapp.databinding.FragmentHomeBinding;
 import org.aston.quizzapp.viewmodel.CategoryViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -30,9 +32,11 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class homeFragment extends Fragment {
 
 
-    Button btnGame;
-
-
+    private Button button;
+    private FragmentHomeBinding _biniding;
+    private final FragmentHomeBinding getBinding() {
+        return this._biniding;
+    }
     CategoryViewModel categoryViewModel;
 
 
@@ -47,23 +51,21 @@ public class homeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        categoryViewModel = (CategoryViewModel) new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);
-        categoryViewModel.getCategories();
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
+        this._biniding = FragmentHomeBinding.inflate(inflater, container, false);
+        FragmentHomeBinding homeBinding = this.getBinding();
+        System.out.println("homeBinding ");
+        System.out.println(homeBinding);
+        View view = homeBinding.getRoot();
+        categoryViewModel = (CategoryViewModel) new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);categoryViewModel.getCategories();
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        btnGame =(Button)view.findViewById(R.id.btnGame);
-       // navigate to game page using btnGame
-        btnGame.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Navigation.findNavController(view).navigate(R.id.gameFragment);
-                    }
-                }
-        );
+
+        if (homeBinding != null) {
+            homeBinding.setLifecycleOwner((LifecycleOwner)this);
+            homeBinding.setCategoryViewModel(categoryViewModel);
+        }
+        categoryViewModel.getCategory(1);
+        return inflater.inflate(R.layout.fragment_home, container, false);
+
+
     }
 }
