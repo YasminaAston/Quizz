@@ -69,6 +69,7 @@ public class User{
 		this.username = username;
 	}
 
+
 	public void setRole(Role role) {
 		this.role = role;
 	}
@@ -83,5 +84,8 @@ public class User{
 				", username='" + username + '\'' +
 				", role=" + role +
 				'}';
+	}
+
+	public void setPassword(String password) {
 	}
 }
