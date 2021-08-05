@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">quizzApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="accueil">Accueil</string>
+    <string name="toto">Toto</string>
+    <string name="prenom">Prenom</string>
+    <string name="mon_profile">Mon Profile</string>
+    <string name="prenombis">Prenom: </string>
+    <string name="nom">Nom</string>
+    <string name="username">UserName: </string>
+    <string name="email">Email:</string>
+    <string name="mot_de_passe">Mot de passe: </string>
+    <string name="numero_de_t_l_phone">Numero de téléphone: </string>
+    <string name="user">User</string>
+    <string name="question_modifier">Que voulez vous modifier?</string>
+    <string name="email2">Email</string>
+    <string name="telephone2">Telephone</string>
+    <string name="mot_de_passe2">Mot de Passe</string>
+    <string name="phrase_invite1">Si vous n\'avez pas encor de compte, Incrivez-vous dès maintenant!</string>
+    <string name="compte">Compte</string>
+    <string name="reglages">Réglages</string>
+    <string name="jouer">Jouer</string>
+
+    <string name="title_activity_game">GameActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="ajouter_une_question">Ajouter une question :</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="questions">Questions :</string>
+    <string name="tout">Tout</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="modifier">Modifier</string>
+    <string name="la_vraie_reponse">la vraie reponse:</string>
+    <string name="fausse_reponse1">fausse reponse1:</string>
+    <string name="fausse_reponse2">fausse reponse2:</string>
+    <string name="fausse_reponse3">fausse reponse3:</string>
+    <string name="nom_complet">Nom complet</string>
+</resources>
