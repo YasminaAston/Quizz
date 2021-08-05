@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * @Route("/scores")
+ * @Route("/score")
  */
 class ScoreController extends AbstractController
 {
