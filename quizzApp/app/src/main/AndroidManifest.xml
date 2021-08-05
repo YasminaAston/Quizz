@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-feature android:name="android.hardware.type.watch" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.type.watch"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,10 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizzApp"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.GameActivity"
+            android:exported="true"
+            android:label="@string/title_activity_game"
+            android:theme="@style/Theme.QuizzApp.NoActionBar" />
+
         <uses-library
             android:name="com.google.android.wearable"
             android:required="false" />
-
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.

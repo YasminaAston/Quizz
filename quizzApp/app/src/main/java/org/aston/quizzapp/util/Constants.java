@@ -3,7 +3,7 @@ package org.aston.quizzapp.util;
 public class Constants {
 
 
-    public static final String API_URL = "http://127.0.0.1:8000/";
+    public static final String API_URL = "http://172.18.0.1:8000/";
 
     //public static final String API_URL = "http://192.168.1.19:8000/";
 
