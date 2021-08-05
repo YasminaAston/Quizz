@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="userViewModel"
+            type="org.aston.quizzapp.viewmodel.UserViewModel" />
+
+    </data>
+
+    <TableLayout
+        android:layout_width="179dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="250dp"
+        android:gravity="center"
+        android:stretchColumns="3">
+
+        <TableRow>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_gravity="left"
+                android:scrollbarSize="20dp"
+                android:src="@drawable/perso_icone" />
+
+            <TextView
+                android:layout_column="2"
+                android:padding="3dip"
+                android:text="@string/username"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="3"
+                android:inputType="textAutoComplete" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="2"
+                android:padding="3dip"
+                android:text="@string/prenom"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="3"
+                android:inputType="textAutoComplete" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="2"
+                android:padding="3dip"
+                android:text="@string/nom"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="3"
+                android:inputType="textAutoComplete" />
+        </TableRow>
+
+        <TableRow>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_gravity="left"
+                android:scrollbarSize="20dp"
+                android:src="@drawable/phone_icone" />
+
+            <TextView
+                android:layout_column="2"
+                android:padding="3dip"
+                android:text="@string/numero_de_t_l_phone"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="3"
+                android:inputType="phone" />
+        </TableRow>
+
+        <TableRow>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_gravity="left"
+                android:scrollbarSize="20dp"
+                android:src="@drawable/email_icone" />
+
+            <TextView
+                android:layout_column="2"
+                android:padding="3dip"
+                android:text="@string/email2"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="3"
+                android:inputType="textEmailAddress" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="2"
+                android:padding="3dip"
+                android:text="@string/mot_de_passe"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="3"
+                android:inputType="textPassword" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:background="@color/design_default_color_primary"
+                android:text="@string/modifier" />
+        </TableRow>
+    </TableLayout>
+</layout>
