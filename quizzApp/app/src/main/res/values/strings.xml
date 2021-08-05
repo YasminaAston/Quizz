@@ -49,4 +49,7 @@
     <string name="lastname_hint">Nom</string>
     <string name="username_hint">Nom utilisateur</string>
     <string name="already_registered">Déjà inscrit ? Me connecter</string>
+    <string name="radio_1" />
+    <string name="radio_2" />
+    <string name="radio_3" />
 </resources>
