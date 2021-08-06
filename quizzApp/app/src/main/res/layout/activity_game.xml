@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="#85c6fd"
             android:orientation="horizontal">
@@ -43,7 +43,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="100dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -56,6 +56,7 @@
                 android:id="@+id/numQuestion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:gravity="bottom"
                 android:text="1/15"
@@ -79,8 +80,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="right|bottom"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:gravity="right|bottom"
+                android:paddingRight="5dp"
                 android:text="Score: 12"
                 android:textColor="#707070"
                 android:textSize="20sp" />
@@ -89,9 +92,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="394dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="260dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -101,8 +104,8 @@
                 android:layout_margin="10dp"
                 android:background="#e7f4ff"
                 app:cardBackgroundColor="#e7f4ff"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="6dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
@@ -121,9 +124,9 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="397dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="400dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:stretchColumns="2">
 
@@ -136,12 +139,12 @@
                     android:id="@+id/card_1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="#92ccfd"
                     app:cardBackgroundColor="#92ccfd"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="6dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
                     app:layout_column="0"
                     app:layout_columnWeight="1"
                     app:layout_row="0"
@@ -152,7 +155,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="3dp"
                         android:gravity="center"
                         android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
                         android:textColor="#707070"
@@ -163,12 +165,12 @@
                     android:id="@+id/card_2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="#92ccfd"
                     app:cardBackgroundColor="#92ccfd"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="6dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
                     app:layout_columnWeight="1"
                     app:layout_rowWeight="1">
 
@@ -177,7 +179,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="3dp"
                         android:gravity="center"
                         android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
                         android:textColor="#707070"
@@ -194,12 +195,12 @@
                     android:id="@+id/card_3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="#92ccfd"
                     app:cardBackgroundColor="#92ccfd"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="6dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
                     app:layout_columnWeight="1"
                     app:layout_rowWeight="1">
 
@@ -208,7 +209,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="3dp"
                         android:gravity="center"
                         android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
                         android:textColor="#707070"
@@ -220,12 +220,12 @@
                     android:id="@+id/card_4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="#92ccfd"
                     app:cardBackgroundColor="#92ccfd"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="6dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
                     app:layout_columnWeight="1"
                     app:layout_rowWeight="1">
 
@@ -234,7 +234,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="3dp"
                         android:gravity="center"
                         android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
                         android:textColor="#707070"
