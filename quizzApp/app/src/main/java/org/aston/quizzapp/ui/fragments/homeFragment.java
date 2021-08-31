@@ -42,7 +42,7 @@ public class homeFragment extends Fragment {
     private final FragmentHomeBinding getBinding() {
         return this._biniding;
     }
-    CategoryViewModel categoryViewModel;
+
 
 
 
@@ -61,14 +61,14 @@ public class homeFragment extends Fragment {
         System.out.println("homeBinding ");
         System.out.println(homeBinding);
         View view = homeBinding.getRoot();
-        categoryViewModel = (CategoryViewModel) new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);categoryViewModel.getCategories();
+
 
 
         if (homeBinding != null) {
             homeBinding.setLifecycleOwner((LifecycleOwner)this);
-            homeBinding.setCategoryViewModel(categoryViewModel);
+
         }
-        categoryViewModel.getCategory(1);
+
         return inflater.inflate(R.layout.fragment_home, container, false);
 
     }
@@ -76,24 +76,20 @@ public class homeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        button =view.findViewById(R.id.btn_game_page);
+        button =view.findViewById(R.id.btn_home_page);
 
         // navigate to game page using btnGame
         button.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Navigation.findNavController(view).navigate(R.id.gameFragment);
-                        switchActivityGame();
+                        Navigation.findNavController(view).navigate(R.id.categoryFragment);
+
                     }
                 }
         );
 
     }
 
-    private void switchActivityGame() {
-        Intent switchActivityIntent = new Intent(getActivity(), GameActivity.class);
-        startActivity(switchActivityIntent);
-        // ((Activity) getActivity()).overridePendingTransition(0, 0);
-    }
+
 }
