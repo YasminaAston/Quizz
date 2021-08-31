@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="10dp"
     tools:context=".ui.GameActivity">
 
 
@@ -17,28 +16,38 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="50dp"
             android:background="#85c6fd"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/gameReturn"
-                android:layout_width="80dp"
+                android:layout_width="53dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:foregroundGravity="left|center_vertical|center_horizontal"
-                app:srcCompat="@drawable/retour_icone" />
+                app:srcCompat="@drawable/ic_arrow_back_24"
+                />
 
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="338dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_weight="1"
-                android:gravity="center_horizontal|center_vertical"
+                android:gravity="center|center_horizontal|center_vertical"
                 android:text="Culture générale"
-                android:textColor="#707070"
+                android:textColor="#000000"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/gameUser"
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="1"
+                android:foregroundGravity="left|center_vertical|center_horizontal" />
         </LinearLayout>
 
         <LinearLayout
@@ -59,7 +68,7 @@
                 android:layout_weight="1"
                 android:gravity="bottom"
                 android:text="1/15"
-                android:textColor="#707070"
+                android:textColor="#000000"
                 android:textSize="20sp" />
 
             <TextView
@@ -70,7 +79,7 @@
                 android:layout_weight="1"
                 android:gravity="center|bottom"
                 android:text="10"
-                android:textColor="#707070"
+                android:textColor="#000000"
                 android:textSize="20sp" />
 
             <TextView
@@ -84,25 +93,28 @@
                 android:gravity="right|bottom"
                 android:paddingRight="5dp"
                 android:text="Score: 12"
-                android:textColor="#707070"
+                android:textColor="#000000"
                 android:textSize="20sp" />
 
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center|center_vertical"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:gravity="center|center_horizontal|center_vertical"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:background="#e7f4ff"
-                app:cardBackgroundColor="#e7f4ff"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:padding="2dp"
+                app:cardBackgroundColor="#F3F6F8"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="5dp"
                 app:layout_columnWeight="1"
@@ -112,137 +124,142 @@
                     android:id="@+id/txtQuestion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="5dp"
-                    android:gravity="center"
+                    android:layout_gravity="center|center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:ellipsize="none"
+                    android:gravity="center|center_horizontal|center_vertical"
+                    android:maxLines="100"
                     android:scrollHorizontally="false"
-                    android:text="Qui a réalisé la peinture du plafond de la chapelle Sixine 1512? Qui a réalisé la peinture du plafond de la chapelle Sixine 1512?"
-                    android:textColor="#707070"
+                    android:text="Qui a réalisé la peinture du plafond de la chapelle Sixine 1512? Qui a réalisé la peinture du plafond de la chapelle Sixine 1512 Qui a réalisé la peinture du plafond de la chapelle Sixine 1512?"
+                    android:textColor="#000000"
                     android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
-        </RelativeLayout>
+        </LinearLayout>
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_height="163dp"
             android:layout_weight="1"
-            android:stretchColumns="2">
+            android:orientation="vertical">
 
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:stretchColumns="2">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="#92ccfd"
-                    app:cardBackgroundColor="#92ccfd"
-                    app:cardCornerRadius="5dp"
-                    app:cardElevation="5dp"
-                    app:layout_column="0"
-                    app:layout_columnWeight="1"
-                    app:layout_row="0"
-                    app:layout_rowWeight="1">
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/textRes_1"
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_1"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:gravity="center"
-                        android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
-                        android:textColor="#707070"
-                        android:textSize="20sp" />
-                </androidx.cardview.widget.CardView>
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="5dp"
+                        app:layout_column="0"
+                        app:layout_columnWeight="1"
+                        app:layout_row="0"
+                        app:layout_rowWeight="1">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="#92ccfd"
-                    app:cardBackgroundColor="#92ccfd"
-                    app:cardCornerRadius="5dp"
-                    app:cardElevation="5dp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1">
+                        <TextView
+                            android:id="@+id/textRes_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:gravity="center"
+                            android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:background="@drawable/questionone"/>
+                    </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/textRes_2"
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_2"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:gravity="center"
-                        android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
-                        android:textColor="#707070"
-                        android:textSize="20sp" />
-                </androidx.cardview.widget.CardView>
-            </TableRow>
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="5dp"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
 
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/textRes_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:gravity="center"
+                            android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:background="@drawable/questiontow"/>
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_3"
-                    android:layout_width="0dp"
+                <TableRow
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="#92ccfd"
-                    app:cardBackgroundColor="#92ccfd"
-                    app:cardCornerRadius="5dp"
-                    app:cardElevation="5dp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1">
+                    android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/textRes_3"
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_3"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:gravity="center"
-                        android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
-                        android:textColor="#707070"
-                        android:textSize="20sp" />
-                </androidx.cardview.widget.CardView>
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="5dp"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
+
+                        <TextView
+                            android:id="@+id/textRes_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:gravity="center"
+                            android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:background="@drawable/questionthree"/>
+                    </androidx.cardview.widget.CardView>
 
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="#92ccfd"
-                    app:cardBackgroundColor="#92ccfd"
-                    app:cardCornerRadius="5dp"
-                    app:cardElevation="5dp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1">
-
-                    <TextView
-                        android:id="@+id/textRes_4"
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_4"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:gravity="center"
-                        android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
-                        android:textColor="#707070"
-                        android:textSize="20sp" />
-                </androidx.cardview.widget.CardView>
-            </TableRow>
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="5dp"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
+
+                        <TextView
+                            android:id="@+id/textRes_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:gravity="center"
+                            android:text="qqqqqq fffff ssssssss ddddddd eeeeeee ddfdfdf"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:background="@drawable/questionfour"/>
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
 
 
-        </TableLayout>
+            </TableLayout>
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
