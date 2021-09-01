@@ -7,6 +7,9 @@
         <variable
             name="gameViewModel"
             type="org.aston.quizzapp.viewmodel.GameViewModel" />
+        <variable
+            name="categoryViewModel"
+            type="org.aston.quizzapp.viewmodel.CategoryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,13 +41,13 @@
                     app:srcCompat="@drawable/ic_arrow_back_24" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/gameTitle"
                     android:layout_width="338dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center|center_horizontal|center_vertical"
                     android:layout_weight="1"
                     android:gravity="center|center_horizontal|center_vertical"
-                    android:text="Culture générale"
+                    android:text="@{categoryViewModel.categoryMutableLiveData.getName()}"
                     android:textColor="#000000"
                     android:textSize="20sp" />
 
