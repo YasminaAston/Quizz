@@ -154,9 +154,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/thecodingmachine/safe" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/orm-pack" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/twig/extra-bundle" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/twig-pack" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/serializer-pack" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

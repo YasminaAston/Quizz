@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * @Route("/quizz/api/categories")
+ * @Route("/categories")
  */
 class CategoryController extends AbstractController
 {

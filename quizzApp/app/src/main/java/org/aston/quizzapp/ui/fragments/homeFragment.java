@@ -102,15 +102,7 @@ public class homeFragment extends Fragment {
     }
 
 
-    private void switchActivityGame() {
-        quizzDto.setUserId(1);
-        quizzDto.setCategoryId(2);
-        quizzDto.setDifficulty(1);
-        gameViewModel.startGame(quizzDto);
-        Intent switchActivityIntent = new Intent(getActivity(), GameActivity.class);
-        startActivity(switchActivityIntent);
 
-    }
 
 
 }

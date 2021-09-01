@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * @Route("/quizz/api/roles")
+ * @Route("/roles")
  */
 class RoleController extends AbstractController
 {

@@ -34,7 +34,7 @@ public class GameViewModel extends AndroidViewModel {
     public MutableLiveData<Game> game = new MutableLiveData<Game>();
     public MutableLiveData<List<Quizz>> listQuizzes = new MutableLiveData<List<Quizz>>();
     public MutableLiveData<User> user = new MutableLiveData<User>();
-    public String test;
+    public MutableLiveData<String> test =  new MutableLiveData<>();
     @ViewModelInject
     public GameViewModel(@NonNull Application application, GameRepository gameRepository) {
         super(application);
@@ -55,18 +55,23 @@ public class GameViewModel extends AndroidViewModel {
                           game.setValue(response.body());
                           user.setValue(response.body().getUser());
                           listQuizzes.setValue(response.body().getQuizzes());
-                          test = "Teste Réussi";
-                          System.out.println(response.body());
+                          test.setValue("Test Réussi");
+                          System.out.println(test.getValue());
+                          System.out.println(game.getValue());
+                          System.out.println("list des quizzes ////////////*************////////////");
+                          System.out.println(listQuizzes.getValue());
                       }
                   }
 
                   @Override
                   public void onFailure(Call<Game> call, Throwable t) {
-                      Toast.makeText(context, "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                      System.out.println(t.getMessage());
+                      System.out.println(t.getStackTrace());
                   }
               });
           }catch (Exception e){
-              Toast.makeText(context, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+              System.out.println(e.getMessage());
+              System.out.println(e.getStackTrace());
          }
         }else{
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -86,11 +91,6 @@ public class GameViewModel extends AndroidViewModel {
                     public void onResponse(Call<Game> call, Response<Game> response) {
                         if(response.isSuccessful()){
                             game.setValue(response.body());
-                            System.out.println("affiche game ");
-                            System.out.println(response.body());
-                            System.out.println("gameMutableLiveData.getValue()  ");
-                            System.out.println(game.getValue());
-                            Toast.makeText(context, "game getting  ", Toast.LENGTH_SHORT).show();
                         }
                     }
 

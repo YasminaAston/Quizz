@@ -6,6 +6,17 @@ public class QuizzDto {
     private Integer categoryId;
     private int difficulty;
 
+
+    public QuizzDto(Integer userId, Integer categoryId, int difficulty) {
+        this.userId = userId;
+        this.categoryId = categoryId;
+        this.difficulty = difficulty;
+    }
+
+    public QuizzDto() {
+
+    }
+
     public Integer getUserId() {
         return userId;
     }

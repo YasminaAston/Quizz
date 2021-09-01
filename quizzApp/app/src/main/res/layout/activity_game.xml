@@ -137,7 +137,6 @@
                         android:gravity="center|center_horizontal|center_vertical"
                         android:maxLines="100"
                         android:scrollHorizontally="false"
-                        android:text="@{gameViewModel.test}"
                         android:textColor="#000000"
                         android:textSize="24sp" />
                 </androidx.cardview.widget.CardView>

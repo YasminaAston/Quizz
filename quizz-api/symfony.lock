@@ -607,9 +607,6 @@
             "templates/base.html.twig"
         ]
     },
-    "symfony/twig-pack": {
-        "version": "v1.0.1"
-    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -640,9 +637,6 @@
     },
     "theseer/tokenizer": {
         "version": "1.2.0"
-    },
-    "twig/extra-bundle": {
-        "version": "v3.3.1"
     },
     "twig/twig": {
         "version": "v3.2.1"

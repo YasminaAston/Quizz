@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * @Route("/quizz/api/responses")
+ * @Route("/responses")
  */
 class ResponseController extends AbstractController
 {
