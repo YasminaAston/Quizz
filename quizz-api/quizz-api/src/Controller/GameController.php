@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * @Route("/games")
+ * @Route("/quizz/api/games")
  */
 class GameController extends AbstractController
 {

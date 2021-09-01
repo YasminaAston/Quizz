@@ -66,7 +66,7 @@ public class gameFragment extends Fragment {
     private GameViewModel gameViewModel;
     private CategoryViewModel categoryViewModel;
     private QuizzViewModel quizzViewModel;
-    private FragmentGameBinding upBinding;
+
 
 
     @Override
@@ -82,8 +82,6 @@ public class gameFragment extends Fragment {
 
         this._biniding = FragmentGameBinding.inflate(inflater, container, false);
         FragmentGameBinding gameBinding = this.getBinding();
-        System.out.println("gameBinding not null ");
-        System.out.println(gameBinding);
 
         View view = gameBinding.getRoot();
 
@@ -97,8 +95,8 @@ public class gameFragment extends Fragment {
         }
         gameViewModel.getGame(1);
         System.out.println("gameViewModel.gameMutableLiveData.getValue() : ");
-        System.out.println(gameViewModel.gameMutableLiveData.getValue());
-        gameViewModel.gameMutableLiveData.observe(getViewLifecycleOwner(), new Observer<Game>() {
+        System.out.println(gameViewModel.game.getValue());
+        gameViewModel.game.observe(getViewLifecycleOwner(), new Observer<Game>() {
             @Override
             public void onChanged(Game game) {
                 // textView.setText("Get game");
@@ -147,9 +145,9 @@ public class gameFragment extends Fragment {
         quizzDto.setCategoryId(1);
         quizzDto.setUserId(1);
         gameViewModel.startGame(quizzDto);
-        gameViewModel.gameMutableLiveData.observe(getViewLifecycleOwner(), (Observer) o -> {
+        gameViewModel.game.observe(getViewLifecycleOwner(), (Observer) o -> {
             System.out.println("game changed ! ");
-            System.out.println(gameViewModel.gameMutableLiveData.getValue());
+            System.out.println(gameViewModel.game.getValue());
         });
     }
 

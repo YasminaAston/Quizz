@@ -16,7 +16,11 @@ import org.aston.quizzapp.QuizzApplication;
 import org.aston.quizzapp.data.GameRepository;
 import org.aston.quizzapp.dto.QuizzDto;
 import org.aston.quizzapp.models.Game;
+import org.aston.quizzapp.models.Quizz;
+import org.aston.quizzapp.models.User;
 import org.aston.quizzapp.util.NetworkResult;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,8 +31,10 @@ public class GameViewModel extends AndroidViewModel {
 
     private final GameRepository gameRepository;
     private Context context;
-    public MutableLiveData<Game> gameMutableLiveData = new MutableLiveData<Game>();
-
+    public MutableLiveData<Game> game = new MutableLiveData<Game>();
+    public MutableLiveData<List<Quizz>> listQuizzes = new MutableLiveData<List<Quizz>>();
+    public MutableLiveData<User> user = new MutableLiveData<User>();
+    public String test;
     @ViewModelInject
     public GameViewModel(@NonNull Application application, GameRepository gameRepository) {
         super(application);
@@ -38,7 +44,7 @@ public class GameViewModel extends AndroidViewModel {
 
 
    public void startGame(QuizzDto quizzDto){
-       gameMutableLiveData.setValue(new Game());
+       System.out.println("Start game ...");
         if (hasInternaetConnection()){
           try {
             Call<Game> gameResponse = gameRepository.startGame(quizzDto);
@@ -46,9 +52,11 @@ public class GameViewModel extends AndroidViewModel {
                   @Override
                   public void onResponse(Call<Game> call, Response<Game> response) {
                       if(response.isSuccessful()){
-                          gameMutableLiveData.setValue(response.body());
+                          game.setValue(response.body());
+                          user.setValue(response.body().getUser());
+                          listQuizzes.setValue(response.body().getQuizzes());
+                          test = "Teste Réussi";
                           System.out.println(response.body());
-                          Toast.makeText(context, "Game Starting  ", Toast.LENGTH_SHORT).show();
                       }
                   }
 
@@ -63,12 +71,12 @@ public class GameViewModel extends AndroidViewModel {
         }else{
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
         }
-
+       System.out.println("Game started successfully ...");
    }
 
 
     public void getGame(int gameId){
-        System.out.println("hasInternaetConnection() "+ hasInternaetConnection());
+        System.out.println("hasInternetConnection() "+ hasInternaetConnection());
         if (hasInternaetConnection()){
             try {
                 System.out.println("Start get game");
@@ -77,11 +85,11 @@ public class GameViewModel extends AndroidViewModel {
                     @Override
                     public void onResponse(Call<Game> call, Response<Game> response) {
                         if(response.isSuccessful()){
-                            gameMutableLiveData.setValue(response.body());
+                            game.setValue(response.body());
                             System.out.println("affiche game ");
                             System.out.println(response.body());
                             System.out.println("gameMutableLiveData.getValue()  ");
-                            System.out.println(gameMutableLiveData.getValue());
+                            System.out.println(game.getValue());
                             Toast.makeText(context, "game getting  ", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -93,7 +101,7 @@ public class GameViewModel extends AndroidViewModel {
                 });
 
                 System.out.println("get game from repo");
-                System.out.println(gameMutableLiveData.getValue());
+                System.out.println(game.getValue());
             }catch (Exception e){
                 Toast.makeText(context, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
             }

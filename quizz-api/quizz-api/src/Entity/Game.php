@@ -40,7 +40,7 @@ class Game
     /**
      * @ORM\ManyToMany(targetEntity=Quizz::class)
      * @ORM\JoinTable(name="game_quizzes",
-     *joinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")},
+     *joinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id", unique=false)},
      *inverseJoinColumns={@ORM\JoinColumn(name="quizz_id", referencedColumnName="id", unique=true)})
      * @Groups({"quizz"})
      */

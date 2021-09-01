@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 
@@ -21,9 +22,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.aston.quizzapp.R;
 import org.aston.quizzapp.databinding.FragmentHomeBinding;
+import org.aston.quizzapp.dto.QuizzDto;
 import org.aston.quizzapp.ui.GameActivity;
 import org.aston.quizzapp.ui.MainActivity;
 import org.aston.quizzapp.viewmodel.CategoryViewModel;
+import org.aston.quizzapp.viewmodel.GameViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -42,7 +45,8 @@ public class homeFragment extends Fragment {
         return this._biniding;
     }
     CategoryViewModel categoryViewModel;
-
+    GameViewModel gameViewModel;
+    QuizzDto quizzDto = new QuizzDto();
 
 
 
@@ -61,6 +65,7 @@ public class homeFragment extends Fragment {
         System.out.println(homeBinding);
         View view = homeBinding.getRoot();
         categoryViewModel = (CategoryViewModel) new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);categoryViewModel.getCategories();
+        gameViewModel = (GameViewModel) new ViewModelProvider(requireActivity()).get(GameViewModel.class);categoryViewModel.getCategories();
 
 
         if (homeBinding != null) {
@@ -89,8 +94,12 @@ public class homeFragment extends Fragment {
     }
 
     private void switchActivityGame() {
+        quizzDto.setUserId(1);
+        quizzDto.setCategoryId(2);
+        quizzDto.setDifficulty(1);
+        gameViewModel.startGame(quizzDto);
         Intent switchActivityIntent = new Intent(getActivity(), GameActivity.class);
         startActivity(switchActivityIntent);
-        // ((Activity) getActivity()).overridePendingTransition(0, 0);
+
     }
 }

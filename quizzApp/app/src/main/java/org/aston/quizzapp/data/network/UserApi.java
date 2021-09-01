@@ -11,9 +11,9 @@ import retrofit2.http.Path;
 
 public interface UserApi {
 
-    @POST("users/new")
+    @POST("quizz/api/users/new")
     Call<User> addUser(@Body User user);
 
-    @GET("users/{id}")
+    @GET("quizz/api/users/{id}")
     Call<User> getUserInfos(@Path("id") Integer userId);
 }

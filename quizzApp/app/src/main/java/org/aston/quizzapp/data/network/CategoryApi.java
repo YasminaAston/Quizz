@@ -17,9 +17,9 @@ import retrofit2.http.Path;
 public interface CategoryApi {
 
 
-    @GET("category/{id}")
+    @GET("quizz/api/category/{id}")
     Call<Category> getCategory(@Path("id") int categoryId);
 
-    @GET("categories")
+    @GET("quizz/api/categories")
     Call<List<Category>> getCategories();
 }
