@@ -11,11 +11,12 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
     buildFeatures {
-        // viewBinding true
+        //viewBinding true
         dataBinding true
         // for view binding:
         // viewBinding true
     }
+
     defaultConfig {
         applicationId "org.aston.quizzapp"
         minSdkVersion 23

@@ -38,4 +38,13 @@ public class Response {
 	public void setCorrect(boolean correct) {
 		isCorrect = correct;
 	}
+
+	@Override
+	public String toString() {
+		return "Response{" +
+				"id=" + id +
+				", label='" + label + '\'' +
+				", isCorrect=" + isCorrect +
+				'}';
+	}
 }

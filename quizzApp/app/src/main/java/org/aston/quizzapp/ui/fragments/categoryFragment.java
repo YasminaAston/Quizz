@@ -18,8 +18,11 @@ import android.widget.Button;
 import org.aston.quizzapp.R;
 import org.aston.quizzapp.databinding.FragmentCategoryBinding;
 import org.aston.quizzapp.databinding.FragmentHomeBinding;
+import org.aston.quizzapp.dto.QuizzDto;
+import org.aston.quizzapp.models.Quizz;
 import org.aston.quizzapp.ui.GameActivity;
 import org.aston.quizzapp.viewmodel.CategoryViewModel;
+import org.aston.quizzapp.viewmodel.GameViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -32,7 +35,8 @@ public class categoryFragment extends Fragment {
      private final FragmentCategoryBinding getBinding() {
          return this._biniding;
      }
-     CategoryViewModel categoryViewModel;
+     public CategoryViewModel categoryViewModel;
+     public GameViewModel gameViewModel;
 
 
 
@@ -52,6 +56,7 @@ public class categoryFragment extends Fragment {
          System.out.println(categoryBinding);
          View view = categoryBinding.getRoot();
          categoryViewModel = (CategoryViewModel) new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);categoryViewModel.getCategories();
+         gameViewModel = (GameViewModel) new ViewModelProvider(requireActivity()).get(GameViewModel.class);categoryViewModel.getCategories();
 
 
          if (categoryBinding != null) {
@@ -74,7 +79,7 @@ public class categoryFragment extends Fragment {
                      @Override
                      public void onClick(View v) {
                          //Navigation.findNavController(view).navigate(R.id.gameFragment);
-                         switchActivityGame();
+                         switchActivityGame(1, 1, 1);
                      }
                  }
          );
@@ -86,4 +91,21 @@ public class categoryFragment extends Fragment {
          startActivity(switchActivityIntent);
          // ((Activity) getActivity()).overridePendingTransition(0, 0);
      }
+
+
+    private void switchActivityGame(int userId, int categoryId, int difficulty) {
+        QuizzDto quizzDto = new QuizzDto();
+        quizzDto.setUserId(userId);
+        quizzDto.setCategoryId(categoryId);
+        quizzDto.setDifficulty(difficulty);
+        // gameViewModel.startGame(quizzDto);
+        // gameViewModel.startGame(quizzDto);
+
+
+        Intent switchActivityIntent = new Intent(getActivity(), GameActivity.class);
+        startActivity(switchActivityIntent);
+
+
+
+    }
 }

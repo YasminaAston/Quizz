@@ -19,14 +19,14 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("question")
+     * @Groups({"question", "quizz"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=55, unique=true)
-     * @Groups("question")
-     */
+     * @Groups({"question", "quizz"})
+     */                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     private $name;
 
     public function getId(): ?int
