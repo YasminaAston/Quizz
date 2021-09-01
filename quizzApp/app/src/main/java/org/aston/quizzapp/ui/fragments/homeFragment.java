@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -44,9 +45,11 @@ public class homeFragment extends Fragment {
     private final FragmentHomeBinding getBinding() {
         return this._biniding;
     }
+
     CategoryViewModel categoryViewModel;
     GameViewModel gameViewModel;
     QuizzDto quizzDto = new QuizzDto();
+
 
 
 
@@ -64,15 +67,17 @@ public class homeFragment extends Fragment {
         System.out.println("homeBinding ");
         System.out.println(homeBinding);
         View view = homeBinding.getRoot();
+
         categoryViewModel = (CategoryViewModel) new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);categoryViewModel.getCategories();
         gameViewModel = (GameViewModel) new ViewModelProvider(requireActivity()).get(GameViewModel.class);categoryViewModel.getCategories();
 
 
+
         if (homeBinding != null) {
             homeBinding.setLifecycleOwner((LifecycleOwner)this);
-            homeBinding.setCategoryViewModel(categoryViewModel);
+
         }
-        categoryViewModel.getCategory(1);
+
         return inflater.inflate(R.layout.fragment_home, container, false);
 
     }
@@ -80,18 +85,22 @@ public class homeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        button =(Button)view.findViewById(R.id.btn_game_page);
+        button = view.findViewById(R.id.btn_home_page);
+
         // navigate to game page using btnGame
         button.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Navigation.findNavController(view).navigate(R.id.gameFragment);
-                        switchActivityGame();
+                        Navigation.findNavController(view).navigate(R.id.categoryFragment);
+
                     }
                 }
         );
+
+
     }
+
 
     private void switchActivityGame() {
         quizzDto.setUserId(1);
@@ -102,4 +111,6 @@ public class homeFragment extends Fragment {
         startActivity(switchActivityIntent);
 
     }
+
+
 }
