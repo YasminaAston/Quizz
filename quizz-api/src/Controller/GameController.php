@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Dto\QuizzDto;
 use App\Entity\Category;
 use App\Entity\Game;
+use App\Entity\Question;
 use App\Entity\Quizz;
 use App\Form\GameType;
 use App\Repository\CategoryRepository;
@@ -102,11 +103,13 @@ class GameController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $game = new Game();
             $game->setUser($user);
-            $questionsQuizz = array_rand($questions, 10);
+            $indexs = array_rand($questions, 10);
+            $questionsQuizz = array();
+            foreach ($indexs as $key => $value) { $questionsQuizz[$key] = $questions[$value]; }
 
-            foreach ($questionsQuizz as $key => $value) {
+            foreach ($questionsQuizz as $key => $question) {
                 $quizz = new Quizz();
-                $quizz->setQuestion($value);
+                $quizz->setQuestion($question);
                 $entityManager->persist($quizz);
                 $entityManager->flush();
                 // array_push($quizzes, $quizz);
@@ -114,7 +117,7 @@ class GameController extends AbstractController
             }
             $entityManager->persist($game);
             $entityManager->flush();
-            return $this -> json($game, 200);
+            return $this -> json($game, 200, [], ['groups'=>['quizz']]);
         }else {
             return $this -> json(['status'=> Response::HTTP_OK, 'message'=> 'Entity question is empty'], 200, [], ['groups'=>['quizz']]);
         }
