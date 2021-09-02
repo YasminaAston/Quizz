@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0233b3b437c756df63891572428b7fb1",
+    "content-hash": "d8c478d9f43f5bf540f863da39e4af8a",
     "packages": [
         {
             "name": "api-platform/core",
@@ -8964,6 +8964,43 @@
     ],
     "packages-dev": [
         {
+            "name": "api-platform/api-pack",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/api-platform/api-pack.git",
+                "reference": "0fb12343362f565b65eb374d3c49bec580ffcf8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/api-platform/api-pack/zipball/0fb12343362f565b65eb374d3c49bec580ffcf8d",
+                "reference": "0fb12343362f565b65eb374d3c49bec580ffcf8d",
+                "shasum": ""
+            },
+            "require": {
+                "api-platform/core": "*",
+                "nelmio/cors-bundle": "*",
+                "symfony/asset": "*",
+                "symfony/expression-language": "*",
+                "symfony/orm-pack": "*",
+                "symfony/security-bundle": "*",
+                "symfony/serializer-pack": "*",
+                "symfony/twig-bundle": "*",
+                "symfony/validator": "*"
+            },
+            "type": "symfony-pack",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A pack for API Platform",
+            "support": {
+                "issues": "https://github.com/api-platform/api-pack/issues",
+                "source": "https://github.com/api-platform/api-pack/tree/v1.3.0"
+            },
+            "time": "2020-08-28T20:27:34+00:00"
+        },
+        {
             "name": "myclabs/deep-copy",
             "version": "1.10.2",
             "source": {
@@ -11101,6 +11138,53 @@
                 }
             ],
             "time": "2021-07-15T21:37:44+00:00"
+        },
+        {
+            "name": "symfony/serializer-pack",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/serializer-pack.git",
+                "reference": "61173947057d5e1bf1c79e2a6ab6a8430be0602e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/serializer-pack/zipball/61173947057d5e1bf1c79e2a6ab6a8430be0602e",
+                "reference": "61173947057d5e1bf1c79e2a6ab6a8430be0602e",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "^1.0",
+                "phpdocumentor/reflection-docblock": "*",
+                "symfony/property-access": "*",
+                "symfony/property-info": "*",
+                "symfony/serializer": "*"
+            },
+            "type": "symfony-pack",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A pack for the Symfony serializer",
+            "support": {
+                "issues": "https://github.com/symfony/serializer-pack/issues",
+                "source": "https://github.com/symfony/serializer-pack/tree/v1.0.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-10-19T08:52:16+00:00"
         },
         {
             "name": "theseer/tokenizer",
