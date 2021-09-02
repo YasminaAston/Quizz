@@ -9,7 +9,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * collectionOperations={
+ *     "get"={"normalization_context"={"groups"={"question", "quizz"}}},
+ *  "post",},
+ * itemOperations={
+ *     "get"={"normalization_context"={"groups"={"question", "quizz"}}},
+ *     "put",
+ *     "delete"
+ *                }, paginationEnabled=false
+ * )
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @UniqueEntity(fields="name", message="Name is already used.")
  */

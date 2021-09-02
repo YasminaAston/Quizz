@@ -19,21 +19,27 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 /**
- * @Route("/users")
+ * @Route("/api/users")
  */
 class UserController extends AbstractController
 {
     protected UserRepository $userRepository;
-
+    private $_passwordEncoder;
     /**
      * UserController constructor.
      * @param UserRepository $userRepository
      */
-    public function __construct(UserRepository $userRepository)
+    public function __construct(
+        UserRepository $userRepository,
+        UserPasswordEncoderInterface $passwordEncoder
+    )
     {
         $this->userRepository = $userRepository;
+        $this->_passwordEncoder = $passwordEncoder;
     }
 
 
@@ -88,6 +94,18 @@ class UserController extends AbstractController
         }
         $role = $roleRepository ->findOneBy(array('roleName' => 'ROLE_USER'));
         $user->setRole($role);
+/////////////////////////////////////////////////////////////////////////////////
+        if ($user->getPassword()) {
+            $user->setPassword(
+                $this->_passwordEncoder->encodePassword(
+                    $user,
+                    $user->getPassword()
+                )
+            );
+
+            $user->eraseCredentials();
+        }
+ /////////////////////////////////////////////////////////////////////////////////////////
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();

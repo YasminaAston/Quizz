@@ -23,7 +23,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * @Route("/games")
+ * @Route("/api/games")
  */
 class GameController extends AbstractController
 {
