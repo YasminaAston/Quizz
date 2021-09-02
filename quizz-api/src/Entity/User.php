@@ -14,7 +14,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\JoinColumn(...)
  */
 /**
- * @ApiResource()
+ * @ApiResource(
+ * collectionOperations={
+ *     "get"={"normalization_context"={"groups"={"quizz"}}},
+ *  "post",},
+ * itemOperations={
+ *     "get"={"normalization_context"={"groups"={"quizz"}}},
+ *     "put",
+ *     "delete"
+ *                }
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields="email", message="Email is already used.")
  * @UniqueEntity(fields="username", message="Username is already used.")

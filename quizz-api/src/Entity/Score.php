@@ -7,7 +7,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * collectionOperations={
+ *     "get"={"normalization_context"={"groups"={"quizz"}}},
+ *  "post",},
+ * itemOperations={
+ *     "get"={"normalization_context"={"groups"={"quizz"}}},
+ *     "put",
+ *     "delete"
+ *                }
+ * )
  * @ORM\Entity(repositoryClass=ScoreRepository::class)
  */
 class Score
