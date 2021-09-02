@@ -7,19 +7,31 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+
 
 /**
  * @ORM\ManyToOne(...)
  * @ORM\JoinColumn(...)
  */
 /**
- * @ApiResource()
+ * @ApiResource(
+ * collectionOperations={
+ *     "get"={"normalization_context"={"groups"={"quizz"}}},
+ *  "post",},
+ * itemOperations={
+ *     "get"={"normalization_context"={"groups"={"quizz"}}},
+ *     "put",
+ *     "delete"
+ *                }, paginationEnabled=false
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields="email", message="Email is already used.")
  * @UniqueEntity(fields="username", message="Username is already used.")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -53,6 +65,7 @@ class User
     private $image;
 
     /**
+     * @var string The hashed password
      * @ORM\Column(type="string", length=3000, nullable= false)
      *
      */
@@ -143,6 +156,10 @@ class User
 
     public function getUsername(): ?string
     {
+        return $this->email;
+    }
+    public function getUsername2(): ?string
+    {
         return $this->username;
     }
 
@@ -153,10 +170,11 @@ class User
         return $this;
     }
 
-    public function getRole(): ?Role
+    public function getRole(): Role
     {
-        return $this->role;
+        return ($this->role);
     }
+
 
     public function setRole(?Role $role): self
     {
@@ -165,4 +183,51 @@ class User
         return $this;
     }
 
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        // return $this-> role;
+        return array($this-> role);
+    }
+
+
+    /**
+     * @Groups("user:write")
+     *
+     * @SerializedName("password")
+     */
+    private $plainPassword;
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        $this->plainPassword = null;
+    }
+
+    public function getSalt(): void
+    {
+
+    }
 }

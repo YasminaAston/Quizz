@@ -8,7 +8,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * collectionOperations={
+ *     "get"={"normalization_context"={"groups"={"question", "quizz"}}},
+ *  "post",},
+ * itemOperations={
+ *     "get"={"normalization_context"={"groups"={"question", "quizz"}}},
+ *     "put",
+ *     "delete"
+ *                },
+ *     paginationEnabled=false
+ * )
  * @ORM\Entity(repositoryClass=ResponseRepository::class)
  */
 class Response

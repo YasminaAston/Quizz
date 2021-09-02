@@ -11,7 +11,16 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * collectionOperations={
+ *     "get"={"normalization_context"={"groups"={"question", "quizz"}}},
+ *  "post",},
+ * itemOperations={
+ *     "get"={"normalization_context"={"groups"={"question", "quizz"}}},
+ *     "put",
+ *     "delete"
+ *                }, paginationEnabled=false
+ * )
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
  * @UniqueEntity(fields="label", message="Question is already exist.")
  *ORM\ManyToOne(...)
