@@ -15,6 +15,7 @@ import androidx.lifecycle.MutableLiveData;
 import org.aston.quizzapp.QuizzApplication;
 import org.aston.quizzapp.data.GameRepository;
 import org.aston.quizzapp.dto.QuizzDto;
+import org.aston.quizzapp.models.Category;
 import org.aston.quizzapp.models.Game;
 import org.aston.quizzapp.models.Quizz;
 import org.aston.quizzapp.models.User;
@@ -34,7 +35,8 @@ public class GameViewModel extends AndroidViewModel {
     public MutableLiveData<Game> game = new MutableLiveData<Game>();
     public MutableLiveData<List<Quizz>> listQuizzes = new MutableLiveData<List<Quizz>>();
     public MutableLiveData<User> user = new MutableLiveData<User>();
-    public MutableLiveData<String> test =  new MutableLiveData<>();
+
+
     @ViewModelInject
     public GameViewModel(@NonNull Application application, GameRepository gameRepository) {
         super(application);
@@ -55,9 +57,6 @@ public class GameViewModel extends AndroidViewModel {
                           game.setValue(response.body());
                           user.setValue(response.body().getUser());
                           listQuizzes.setValue(response.body().getQuizzes());
-                          test.setValue("Test Réussi");
-                          System.out.println(test.getValue());
-                          System.out.println(game.getValue());
                           System.out.println("list des quizzes ////////////*************////////////");
                           System.out.println(listQuizzes.getValue());
                       }

@@ -48,11 +48,12 @@ public class GameActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private CardView cardView;
+    ActivityGameBinding gameBinding;
     public GameViewModel gameViewModel;
     private CategoryViewModel categoryViewModel;
     private QuizzViewModel quizzViewModel;
     private Quizz currentQuizz;
-    private int index;
+    private int index = 0;
     private User user;
     private Game game;
     private UserViewModel userViewModel;
@@ -61,58 +62,67 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityGameBinding gameBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
+         gameBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
 
         gameViewModel = (GameViewModel) new ViewModelProvider(this).get(GameViewModel.class);
         categoryViewModel = (CategoryViewModel) new ViewModelProvider(this).get(CategoryViewModel.class);
         quizzViewModel = (QuizzViewModel) new ViewModelProvider(this).get(QuizzViewModel.class);
         userViewModel = (UserViewModel) new ViewModelProvider(this).get(UserViewModel.class);
-        gameViewModel.startGame(new QuizzDto(1, 1, 1));
         if (gameBinding != null) {
             System.out.println("game page ! ");
-            gameBinding.setLifecycleOwner((LifecycleOwner)this);
             gameBinding.setGameViewModel(gameViewModel);
+            gameBinding.setCategoryViewModel(categoryViewModel);
+            gameBinding.setLifecycleOwner(this);
         }
-         cardView = (CardView)findViewById(R.id.card_1);
+        gameViewModel.startGame(new QuizzDto(1, 1, 1));
+        categoryViewModel.getCategory(1);
+
+        cardView = (CardView)findViewById(R.id.card_1);
          cardView.setOnClickListener(v -> {
-             gameViewModel.startGame(new QuizzDto(1, 1, 1));
-             System.out.println("VieCard clicked ... ");
-             System.out.println("game page getValue ");
-             System.out.println(gameViewModel.game.getValue());
+             System.out.println("Response 1 clicked ... ");
+             getNextQuestion(quizzList);
+        });
+        findViewById(R.id.card_2).setOnClickListener(v -> {
+            System.out.println("Response 2 clicked ... ");
+            getNextQuestion(quizzList);
+        });
+        findViewById(R.id.card_3).setOnClickListener(v -> {
+            System.out.println("Response 3 clicked ... ");
+            getNextQuestion(quizzList);
+        });
+        findViewById(R.id.card_4).setOnClickListener(v -> {
+            System.out.println("Response 4 clicked ... ");
+            getNextQuestion(quizzList);
         });
 
+            gameViewModel.game.observe(this, new Observer<Game>() {
+                @Override
+                public void onChanged(Game game) {
 
-        gameViewModel.game.observe(this, (Observer) o -> {
-            System.out.println("game page onGetGame ! ");
             System.out.println(gameViewModel.game.getValue());
             game = gameViewModel.game.getValue();
-            System.out.println("myyyyyyyyyyyy game");
-            System.out.println(game);
             quizzList = game.getQuizzes();
-            System.out.println("myyyyyyyyyy quizzList ");
-            System.out.println(quizzList);
             user = game.getUser();
-            System.out.println("myyyyyyyyyy user ");
-            System.out.println(user);
             index = 0;
-            if (quizzList.size() > 0){
-                gameBinding.txtQuestion.setText(quizzList.get(index).getQuestion().getLabel());
-                gameBinding.textRes1.setText(quizzList.get(index).getQuestion().getResponses().get(0).getLabel());
-                gameBinding.textRes2.setText(quizzList.get(index).getQuestion().getResponses().get(1).getLabel());
-                gameBinding.textRes3.setText(quizzList.get(index).getQuestion().getResponses().get(2).getLabel());
-                gameBinding.textRes4.setText(quizzList.get(index).getQuestion().getResponses().get(3).getLabel());
-                index ++;
-
-            }
-
-        });
+            getNextQuestion(quizzList);
+                }
+            });
 
     }
 
 
 
+    private void getNextQuestion(List<Quizz> quizzList){
+        if (quizzList.size() > 0 && index < quizzList.size()){
+            gameBinding.txtQuestion.setText(quizzList.get(index).getQuestion().getLabel());
+            gameBinding.textRes1.setText(quizzList.get(index).getQuestion().getResponses().get(0).getLabel());
+            gameBinding.textRes2.setText(quizzList.get(index).getQuestion().getResponses().get(1).getLabel());
+            gameBinding.textRes3.setText(quizzList.get(index).getQuestion().getResponses().get(2).getLabel());
+            gameBinding.textRes4.setText(quizzList.get(index).getQuestion().getResponses().get(3).getLabel());
+            index ++;
+        }
+    }
 
-    // System.out.println(gameViewModel.gameMutableLiveData.getValue());
 
 
 
