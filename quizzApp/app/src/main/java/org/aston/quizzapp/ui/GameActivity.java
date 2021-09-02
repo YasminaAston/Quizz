@@ -64,6 +64,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
          gameBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
 
+
         gameViewModel = (GameViewModel) new ViewModelProvider(this).get(GameViewModel.class);
         categoryViewModel = (CategoryViewModel) new ViewModelProvider(this).get(CategoryViewModel.class);
         quizzViewModel = (QuizzViewModel) new ViewModelProvider(this).get(QuizzViewModel.class);
@@ -76,6 +77,7 @@ public class GameActivity extends AppCompatActivity {
         }
         gameViewModel.startGame(new QuizzDto(1, 1, 1));
         categoryViewModel.getCategory(1);
+
 
         cardView = (CardView)findViewById(R.id.card_1);
          cardView.setOnClickListener(v -> {
@@ -107,6 +109,37 @@ public class GameActivity extends AppCompatActivity {
             getNextQuestion(quizzList);
                 }
             });
+
+        cardView = (CardView)findViewById(R.id.card_1);
+        cardView.setOnClickListener(v -> {
+            System.out.println("Response 1 clicked ... ");
+            getNextQuestion(quizzList);
+        });
+        findViewById(R.id.card_2).setOnClickListener(v -> {
+            System.out.println("Response 2 clicked ... ");
+            getNextQuestion(quizzList);
+        });
+        findViewById(R.id.card_3).setOnClickListener(v -> {
+            System.out.println("Response 3 clicked ... ");
+            getNextQuestion(quizzList);
+        });
+        findViewById(R.id.card_4).setOnClickListener(v -> {
+            System.out.println("Response 4 clicked ... ");
+            getNextQuestion(quizzList);
+        });
+
+        gameViewModel.game.observe(this, new Observer<Game>() {
+            @Override
+            public void onChanged(Game game) {
+
+                System.out.println(gameViewModel.game.getValue());
+                game = gameViewModel.game.getValue();
+                quizzList = game.getQuizzes();
+                user = game.getUser();
+                index = 0;
+                getNextQuestion(quizzList);
+            }
+        });
 
     }
 
