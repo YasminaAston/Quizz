@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,6 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import org.aston.quizzapp.R;
 import org.aston.quizzapp.databinding.FragmentCategoryBinding;
@@ -21,6 +25,7 @@ import org.aston.quizzapp.databinding.FragmentHomeBinding;
 import org.aston.quizzapp.dto.QuizzDto;
 import org.aston.quizzapp.models.Quizz;
 import org.aston.quizzapp.ui.GameActivity;
+import org.aston.quizzapp.ui.MainActivity;
 import org.aston.quizzapp.viewmodel.CategoryViewModel;
 import org.aston.quizzapp.viewmodel.GameViewModel;
 
@@ -29,7 +34,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class categoryFragment extends Fragment {
 
-
+    private CardView cardView;
      private Button button;
      private FragmentCategoryBinding _biniding;
      private final FragmentCategoryBinding getBinding() {
@@ -39,17 +44,17 @@ public class categoryFragment extends Fragment {
      public GameViewModel gameViewModel;
 
 
-
-
      @Override
      public void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
+
 
      }
 
      @Override
      public View onCreateView(LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
+
          this._biniding = FragmentCategoryBinding.inflate(inflater, container, false);
          FragmentCategoryBinding categoryBinding = this.getBinding();
          System.out.println("categoryBinding ");
@@ -58,6 +63,14 @@ public class categoryFragment extends Fragment {
          categoryViewModel = (CategoryViewModel) new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);categoryViewModel.getCategories();
          gameViewModel = (GameViewModel) new ViewModelProvider(requireActivity()).get(GameViewModel.class);categoryViewModel.getCategories();
 
+         cardView = (CardView) view.findViewById(R.id.card_cat3);
+         cardView.setOnClickListener(v -> {
+
+             System.out.println("Category clicked ... ");
+
+         });
+
+         
 
          if (categoryBinding != null) {
              categoryBinding.setLifecycleOwner((LifecycleOwner)this);
@@ -85,6 +98,8 @@ public class categoryFragment extends Fragment {
          );
 
      }
+
+
 
      private void switchActivityGame() {
          Intent switchActivityIntent = new Intent(getActivity(), GameActivity.class);
