@@ -1,0 +1,3 @@
+<?php //App%255CDto%255CQuizzDto
+
+return [PHP_INT_MAX, []];
