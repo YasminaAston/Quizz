@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import org.aston.quizzapp.R;
 import org.aston.quizzapp.data.network.UserApi;
-import org.aston.quizzapp.databinding.FragmentLoginBinding;
 import org.aston.quizzapp.databinding.FragmentRegistrationBinding;
 import org.aston.quizzapp.di.NetworkModule;
 import org.aston.quizzapp.models.User;

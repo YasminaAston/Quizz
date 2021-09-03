@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/login_fragment"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/logo_iv"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/login_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:textSize="30sp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:textColor="@color/design_default_color_primary"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/email_et"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:hint="@string/email_hint"
+            android:textSize="20sp"
+            android:drawablePadding="10dp"
+            app:drawableStartCompat="@drawable/email_icon" />
+
+        <EditText
+            android:id="@+id/password_et"
+            android:layout_width="300dp"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:layout_marginTop="40dp"
+            android:drawablePadding="10dp"
+            app:drawableStartCompat="@drawable/ic_baseline_lock_24" />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_marginTop="50dp"
+            android:layout_width="150dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/send" />
+
+        <TextView
+            android:id="@+id/register_me_lk_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_me_tv"
+            android:textColor="@color/design_default_color_primary"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

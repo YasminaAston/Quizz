@@ -3,6 +3,7 @@ package org.aston.quizzapp.viewmodel;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -15,6 +16,12 @@ import androidx.lifecycle.MutableLiveData;
 
 import org.aston.quizzapp.data.UserRepository;
 import org.aston.quizzapp.models.User;
+import org.aston.quizzapp.security.LoginRequest;
+import org.aston.quizzapp.security.LoginResponse;
+import org.aston.quizzapp.security.SessionManager;
+import org.aston.quizzapp.ui.MainActivity;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,9 +31,13 @@ import retrofit2.Response;
 //@HiltViewModel
 public class UserViewModel extends AndroidViewModel {
 
+    @Inject
+    public SessionManager sessionManager;
     private UserRepository userRepository;
     private Context context;
     public MutableLiveData<User> userMutableLiveData = new MutableLiveData<User>();
+
+
 
     @ViewModelInject
     public UserViewModel(@NonNull Application application, UserRepository userRepository) {
@@ -86,5 +97,32 @@ public class UserViewModel extends AndroidViewModel {
     }
 
 
+    public void onLogin() {
+        userRepository.login(new LoginRequest("max@test.fr", "0000"))
+                .enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        try {
+                            if(response.isSuccessful()) {
+                                //LoginResponse loginResponse = response.body();
+                                //sessionManager.saveAuthToken(loginResponse.getAuthToken());
+                                //userMutableLiveData.setValue(response.body().getUser());
+                                System.out.println(response.body());
+                            } else {
+                                System.out.println(response.body());
+                            }
+
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                    }
+                });
+    }
 
 }
