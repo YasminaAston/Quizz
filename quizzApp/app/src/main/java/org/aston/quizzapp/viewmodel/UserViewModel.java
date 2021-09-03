@@ -98,7 +98,7 @@ public class UserViewModel extends AndroidViewModel {
 
 
     public void onLogin() {
-        userRepository.login(new LoginRequest("max@test.fr", "0000"))
+        userRepository.login(new LoginRequest("aston@gmail.com", "aston"))
                 .enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -109,7 +109,7 @@ public class UserViewModel extends AndroidViewModel {
                                 //userMutableLiveData.setValue(response.body().getUser());
                                 System.out.println(response.body());
                             } else {
-                                System.out.println(response.body());
+                                System.out.println("Not successfully " + response.body());
                             }
 
                         } catch (Exception e) {

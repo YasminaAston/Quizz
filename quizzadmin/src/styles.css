@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  background: #eef5f9 !important;
+}
+
+header div.d-flex.flex-column.flex-md-row.align-items-center.pb-3 mb-4 .pb-3 {
+  padding-bottom: 0rem!important;
+}
