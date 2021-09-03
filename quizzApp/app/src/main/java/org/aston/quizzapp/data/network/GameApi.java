@@ -16,12 +16,12 @@ import retrofit2.http.Path;
 
 public interface GameApi {
 
-    @POST("quizz/api/games/new")
+    @POST("games/new")
     Call<Game> startNewGame(@Body QuizzDto quizzDto);
 
-    @PUT("quizz/api/games/update_score")
+    @PUT("games/update_score")
     Call<Game> updateGame(@Body GameDto gameDto);
 
-    @GET("quizz/api/games/{id}")
+    @GET("games/{id}")
     Call<Game> getGameById(@Path("id") int gameId);
 }

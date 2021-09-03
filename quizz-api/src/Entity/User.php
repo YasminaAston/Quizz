@@ -29,7 +29,6 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields="email", message="Email is already used.")
- * @UniqueEntity(fields="username", message="Username is already used.")
  */
 class User implements UserInterface
 {
@@ -71,11 +70,8 @@ class User implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=60, nullable=true, unique=true)
-     * @Groups({"quizz", "userInfos"})
-     */
-    private $username;
+
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Role::class)
@@ -157,15 +153,19 @@ class User implements UserInterface
     public function getUsername(): ?string
     {
         return $this->email;
+<<<<<<< HEAD
     }
     public function getUsername2(): ?string
     {
         return $this->username;
+=======
+>>>>>>> efa21809 (delete username)
     }
 
-    public function setUsername(?string $username): self
+
+    public function setUsername(?string $email): self
     {
-        $this->username = $username;
+        $this->email = $email;
 
         return $this;
     }
