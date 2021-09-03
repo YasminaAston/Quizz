@@ -153,13 +153,6 @@ class User implements UserInterface
     public function getUsername(): ?string
     {
         return $this->email;
-<<<<<<< HEAD
-    }
-    public function getUsername2(): ?string
-    {
-        return $this->username;
-=======
->>>>>>> efa21809 (delete username)
     }
 
 
@@ -231,4 +224,5 @@ class User implements UserInterface
     {
 
     }
+
 }

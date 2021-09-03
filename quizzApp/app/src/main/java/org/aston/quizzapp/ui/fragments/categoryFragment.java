@@ -42,14 +42,43 @@ public class categoryFragment extends Fragment {
      }
      public CategoryViewModel categoryViewModel;
      public GameViewModel gameViewModel;
+    private RadioGroup radioGroup;
+    private RadioButton radioEasy, radioMedium, radioHard;
+    private Button btnDisplay;
+
 
 
      @Override
      public void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
-
+         //addListenerOnButton();
 
      }
+
+    public void addListenerOnButton() {
+
+        radioGroup = (RadioGroup) radioGroup.findViewById(R.id.radioGroup);
+        btnDisplay = (Button) button.findViewById(R.id.btn_game_page);
+
+        btnDisplay.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // get selected radio button from radioGroup
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                // find the radiobutton by returned id
+                radioEasy = (RadioButton) radioEasy.findViewById(R.id.radio_easy);
+
+                Toast.makeText(getActivity(),
+                        radioEasy.getText(), Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+    }
 
      @Override
      public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -140,7 +140,6 @@ class UserController extends AbstractController
         }
 
         $user->setEmail($userData->getEmail());
-        $user->setUsername($userData-> getUsername2());
         $user->setFirstname($userData->getFirstname());
         $user->setLastname($userData->getLastname());
         $user->setPassword($userData->getPassword());
