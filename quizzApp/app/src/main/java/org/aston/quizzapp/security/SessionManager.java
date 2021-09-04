@@ -9,14 +9,12 @@ public class SessionManager {
 
     public Context context;
     public static final String USER_TOKEN = "user_token";
-    private SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
+    private SharedPreferences prefs;
 
-    public SessionManager() {
-
-    }
 
     public SessionManager(Context context) {
         this.context = context;
+        prefs = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
     }
 
 
