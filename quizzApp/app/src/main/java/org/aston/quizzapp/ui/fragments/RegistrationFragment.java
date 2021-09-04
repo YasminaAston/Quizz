@@ -70,7 +70,6 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
         user.setEmail(email);
         user.setFirstname(firstname);
         user.setLastname(lastname);
-        user.setUsername(username);
         user.setPassword(password);
         System.out.println(user);
 

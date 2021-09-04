@@ -31,7 +31,7 @@ import retrofit2.Response;
 //@HiltViewModel
 public class UserViewModel extends AndroidViewModel {
 
-    @Inject
+
     public SessionManager sessionManager;
     private UserRepository userRepository;
     private Context context;
@@ -58,10 +58,6 @@ public class UserViewModel extends AndroidViewModel {
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
                             userMutableLiveData.setValue(response.body());
-                            System.out.println("affiche game ");
-                            System.out.println(response.body());
-                            System.out.println("gameMutableLiveData.getValue()  ");
-                            System.out.println(userMutableLiveData.getValue());
                             Toast.makeText(context, "game getting  ", Toast.LENGTH_SHORT).show();
                         }
                         System.out.println("get user from repo");
@@ -97,23 +93,25 @@ public class UserViewModel extends AndroidViewModel {
     }
 
 
-    public void onLogin() {
-        userRepository.login(new LoginRequest("aston@gmail.com", "aston"))
+    public void onLogin(LoginRequest loginRequest) {
+        userRepository.login(loginRequest)
                 .enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         try {
                             if(response.isSuccessful()) {
-                                //LoginResponse loginResponse = response.body();
-                                //sessionManager.saveAuthToken(loginResponse.getAuthToken());
-                                //userMutableLiveData.setValue(response.body().getUser());
+                                LoginResponse loginResponse = response.body();
+                                sessionManager = new SessionManager(context);
+                                sessionManager.saveAuthToken(loginResponse.getToken());
+                                userMutableLiveData.setValue(loginResponse.getUser());
+                                System.out.println("//////////////authentication successfully //////////////////////////");
                                 System.out.println(response.body());
                             } else {
                                 System.out.println("Not successfully " + response.body());
                             }
 
                         } catch (Exception e) {
-                            System.out.println(e.getMessage());
+                            System.out.println("Error on authentication " + e.getMessage());
                         }
 
                     }

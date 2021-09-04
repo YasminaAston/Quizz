@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import org.aston.quizzapp.models.User;
 
 public class LoginResponse {
-    @SerializedName("status_code")
+    @SerializedName("statusCode")
     public int statusCode;
-    @SerializedName("auth_token")
-    public String authToken;
+    @SerializedName("token")
+    public String token;
     @SerializedName("user")
     public User user;
 
@@ -20,21 +20,21 @@ public class LoginResponse {
         this.statusCode = statusCode;
     }
 
-    public String getAuthToken() {
-        return authToken;
+    public String getToken() {
+        return token;
     }
 
     @Override
     public String toString() {
         return "LoginResponse{" +
                 "statusCode=" + statusCode +
-                ", authToken='" + authToken + '\'' +
+                ", token='" + token + '\'' +
                 ", user=" + user +
                 '}';
     }
 
     public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+        this.token = authToken;
     }
 
     public User getUser() {
