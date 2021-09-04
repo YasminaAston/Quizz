@@ -10,6 +10,7 @@ import { UserComponent } from './user/user.component';
 import { QuestionComponent } from './question/question.component';
 import { CategoryComponent } from './category/category.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

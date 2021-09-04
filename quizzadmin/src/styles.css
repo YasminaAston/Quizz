@@ -6,3 +6,11 @@ body {
 header div.d-flex.flex-column.flex-md-row.align-items-center.pb-3 mb-4 .pb-3 {
   padding-bottom: 0rem!important;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+router-outlet {
+  display: none;
+}
