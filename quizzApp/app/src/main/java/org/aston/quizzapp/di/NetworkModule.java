@@ -1,10 +1,14 @@
 package org.aston.quizzapp.di;
 
 
+import android.app.Application;
+import android.content.Context;
+
 import org.aston.quizzapp.data.network.CategoryApi;
 import org.aston.quizzapp.data.network.GameApi;
 import org.aston.quizzapp.data.network.QuizzApi;
 import org.aston.quizzapp.data.network.UserApi;
+import org.aston.quizzapp.security.AuthInterceptor;
 import org.aston.quizzapp.util.Constants;
 
 import java.security.cert.CertificateException;
@@ -37,6 +41,7 @@ public class NetworkModule {
     public static OkHttpClient provideHttpClient(
 
     ) {
+
         try {
             // Create a trust manager that does not validate certificate chains
             final TrustManager[] trustAllCerts = new TrustManager[] {
@@ -71,11 +76,13 @@ public class NetworkModule {
                 }
             });
 
-            OkHttpClient okHttpClient = builder.build();
-            return okHttpClient;
+            return new OkHttpClient.Builder()
+                    .addInterceptor(new AuthInterceptor())
+                    .build();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
 
     }
 

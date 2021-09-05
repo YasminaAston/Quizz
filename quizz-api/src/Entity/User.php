@@ -83,7 +83,11 @@ class User implements UserInterface
 
 
 
-
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -165,7 +169,7 @@ class User implements UserInterface
 
     public function getRole(): Role
     {
-        return ($this->role);
+        return $this->role;
     }
 
 
@@ -183,9 +187,10 @@ class User implements UserInterface
     public function getRoles(): array
     {
 
-        // $roles[0] = $this-> role;
-        return array($this-> role);
+         $roles[0] = $this-> role;
+        return $roles;
     }
+
 
 
     /**
