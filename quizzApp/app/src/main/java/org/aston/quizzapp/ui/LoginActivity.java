@@ -1,6 +1,7 @@
 package org.aston.quizzapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -13,6 +14,7 @@ import android.widget.Button;
 
 import org.aston.quizzapp.R;
 import org.aston.quizzapp.data.UserRepository;
+import org.aston.quizzapp.databinding.ActivityLoginBinding;
 import org.aston.quizzapp.models.User;
 import org.aston.quizzapp.security.LoginRequest;
 import org.aston.quizzapp.security.LoginResponse;
@@ -32,17 +34,28 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginBtn;
     private UserViewModel userViewModel;
     public SessionManager sessionManager;
+    private ActivityLoginBinding loginBinding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+
         userViewModel = (UserViewModel) new ViewModelProvider(this).get(UserViewModel.class);
+
+        if (loginBinding != null) {
+            System.out.println("game page ! ");
+            loginBinding.setLifecycleOwner(this);
+        }
+
         loginBtn = findViewById(R.id.login_btn);
         //// login opération ///// + token saved automatic
         loginBtn.setOnClickListener(v -> {
-            userViewModel.onLogin(new LoginRequest("aston@gmail.com", "aston"));
+            String email = loginBinding.emailEt.getText().toString();
+            String pwd = loginBinding.passwordEt.getText().toString();
+            userViewModel.onLogin(new LoginRequest(email, pwd));
     });
 
         userViewModel.userMutableLiveData.observe(this, new Observer<User>() {

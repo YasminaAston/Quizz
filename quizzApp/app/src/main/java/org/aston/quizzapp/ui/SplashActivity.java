@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class SplashActivity extends Activity {
 
-    private final int STR_SPLASH_TIME = 3000;
+    private final int STR_SPLASH_TIME = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
