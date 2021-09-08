@@ -12,9 +12,7 @@ import { IndexComponent} from './users/index/index.component';
 import { CategoryComponent } from './category/category.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CreateComponent } from './question//create/create.component';
-import { EditComponent } from './question/edit/edit.component';
-import { ViewComponent } from './question/view/view.component';
+;
 import { IndexComponentQuestion} from './question/index/index.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 
@@ -27,9 +25,6 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
     IndexComponent,
     CategoryComponent,
     NotFoundComponent,
-    CreateComponent,
-    EditComponent,
-    ViewComponent,
     IndexComponentQuestion,
     LoginAdminComponent
   ],

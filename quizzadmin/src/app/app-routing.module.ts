@@ -6,7 +6,10 @@ import {NotFoundComponent} from "./not-found/not-found.component";
 import {IndexComponentQuestion} from "./question/index/index.component";
 import { IndexComponent } from './users/index/index.component';
 
+
 const routes: Routes = [
+  { path: '', loadChildren: () => import(`./users/users.module`).then(m => m.UsersModule) },
+  { path: '', loadChildren: () => import(`./question/question.module`).then(m => m.UsersModule) },
   { path: 'home', component: HomeComponent},
   { path: 'questions', component: IndexComponentQuestion},
   { path: 'users', component: IndexComponent},
