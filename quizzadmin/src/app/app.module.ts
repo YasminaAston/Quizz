@@ -7,11 +7,14 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { IndexComponent} from './users/index/index.component';
-import { QuestionComponent } from './question/question.component';
 import { CategoryComponent } from './category/category.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+import { CreateComponent } from './question//create/create.component';
+import { EditComponent } from './question/edit/edit.component';
+import { ViewComponent } from './question/view/view.component';
+import { IndexComponentQuestion} from './question/index/index.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +23,12 @@ import {HttpClientModule} from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     IndexComponent,
-    QuestionComponent,
     CategoryComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CreateComponent,
+    EditComponent,
+    ViewComponent,
+    IndexComponentQuestion
   ],
   imports: [
     BrowserModule,

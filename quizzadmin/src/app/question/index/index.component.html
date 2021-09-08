@@ -1,0 +1,45 @@
+<div class="container">
+    <h6>Users</h6>
+     
+      <div class="addUser">
+        <a title="Add new Question" routerLink="/question/create/" class="btn btn-success mt-4 mb-2">+</a>
+      </div>
+    
+      
+      
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Label</th>
+            <th>Id category</th>
+            <th>category name</th>
+            <th>Id Responses</th>
+            <th>Responses isCorrect</th>
+            <th>Responses name</th>
+            <th>Difficulty</th>
+            <th width="220px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of questionData">
+            <td>{{ data.id }}</td>
+            <td>{{ data.label}}</td>
+            <td>{{ data.category.id }}</td>
+            <td>{{ data.category.name }}</td>
+            <td>{{ data.responses.id }}</td>
+            <td>{{ data.responses.isCorrect }}</td>
+            <td>{{ data.responses.label }}</td>
+            <td>{{ data.difficulty }}</td>
+            <td>
+              <a href="#" [routerLink]="['/question/', data.id, 'view']" class="btn btn-info btn-sm m-2">View</a>
+              <a  [routerLink]="['/question/', data.id, 'edit']" class="btn btn-primary btn-sm m-2">Edit</a>
+              <button type="button" (click)="deleteQuestion(data.id)" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      
+       
+      </table>
+   </div>
+   
