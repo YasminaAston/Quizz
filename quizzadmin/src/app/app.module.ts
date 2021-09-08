@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,11 +12,11 @@ import { IndexComponent} from './users/index/index.component';
 import { CategoryComponent } from './category/category.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
 import { CreateComponent } from './question//create/create.component';
 import { EditComponent } from './question/edit/edit.component';
 import { ViewComponent } from './question/view/view.component';
 import { IndexComponentQuestion} from './question/index/index.component';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,14 @@ import { IndexComponentQuestion} from './question/index/index.component';
     CreateComponent,
     EditComponent,
     ViewComponent,
-    IndexComponentQuestion
+    IndexComponentQuestion,
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    AppRoutingModule,HttpClientModule
+    AppRoutingModule,HttpClientModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
