@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.aston.quizzapp.R;
 import org.aston.quizzapp.data.UserRepository;
@@ -32,6 +33,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginBtn;
+    private TextView registerMeLink;
     private UserViewModel userViewModel;
     public SessionManager sessionManager;
     private ActivityLoginBinding loginBinding;
@@ -58,6 +60,15 @@ public class LoginActivity extends AppCompatActivity {
             userViewModel.onLogin(new LoginRequest(email, pwd));
     });
 
+        registerMeLink = findViewById(R.id.register_me_link_textview);
+        registerMeLink.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+            }
+          });
+
         userViewModel.userMutableLiveData.observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
@@ -76,4 +87,5 @@ public class LoginActivity extends AppCompatActivity {
          userViewModel.onLogin(loginRequest);
 
    }
+
 }
