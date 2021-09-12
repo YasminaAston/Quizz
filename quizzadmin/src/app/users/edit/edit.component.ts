@@ -22,7 +22,6 @@ export class EditComponent implements OnInit ,OnDestroy{
    private router:Router) { }
 
   ngOnInit(): void {
-    debugger;
    this.idsubscription= this.route.paramMap.subscribe({
       next: (res)=>{
         this.id = res['params'].Id      
@@ -33,7 +32,6 @@ export class EditComponent implements OnInit ,OnDestroy{
   
 }
   createForm(){
-    debugger
     this.useEditForm=this.fb.group({
       'id':[this.userData.id],
       'firstname':[this.userData.firstname],

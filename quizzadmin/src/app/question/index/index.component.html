@@ -12,8 +12,8 @@
           <tr>
             <th>Label</th>
             <th>category name</th>
-            <th>Responses isCorrect</th>
             <th>Responses name</th>
+            <th>Responses isCorrect</th>
             <th>Difficulty</th>
             <th width="220px">Action</th>
           </tr>
@@ -22,8 +22,16 @@
           <tr *ngFor="let data of questionData" style="background-color: #dee2e6; border-bottom: 1px solid white">
             <td>{{ data.label }}</td>
             <td>{{ data.category.name }}</td>
-            <td>{{ data.responses.isCorrect }}</td>
-            <td>{{ data.responses.label }}</td>
+            <td>
+              <ng-container *ngFor="let type of data.responses">
+                <tr>{{type.label}}</tr>
+            </ng-container>
+            </td>
+            <td>
+              <ng-container *ngFor="let type of data.responses">
+                <tr>{{ type.isCorrect }}</tr>
+              </ng-container>
+            </td>
             <td>{{ data.difficulty }}</td>
             <td style="display: flex;">
               <a href="#" [routerLink]="['/question/', data.id, 'view']" class="btn btn-info btn-sm m-2">View</a>
