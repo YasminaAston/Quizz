@@ -1,8 +1,8 @@
-<div class="container">
-  <h6>Users</h6>
+<div class="container" style="width: 800px; margin: auto;">
+  <h3>Users</h3>
    
     <div class="addUser">
-      <a title="Add new User" routerLink="/user/create/" class="btn btn-success mt-4 mb-2">+</a>
+      <a title="Add new User" routerLink="/user/create/" class="btn btn-success mt-4 mb-2">Add</a>
     </div>
   
     
@@ -10,27 +10,23 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Email</th>
           <th>Firstname</th>
           <th>Lastname</th>
-          <th>Id role</th>
           <th>Role name</th>
-          <th width="220px">Action</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of userData">
-          <td>{{ data.id }}</td>
+        <tr *ngFor="let data of userData" style="background-color: #dee2e6; border-bottom: 1px solid white">
           <td>{{ data.email}}</td>
           <td>{{ data.firstname }}</td>
           <td>{{ data.lastname }}</td>
-          <td>{{ data.role.id }}</td>
           <td>{{ data.role.roleName }}</td>
-          <td>
+          <td style="display: flex;">
             <a href="#" [routerLink]="['/user/', data.id, 'view']" class="btn btn-info btn-sm m-2">View</a>
             <a  [routerLink]="['/user/', data.id, 'edit']" class="btn btn-primary btn-sm m-2">Edit</a>
-            <button type="button" (click)="deleteUser(data.id)" class="btn btn-danger btn-sm">Delete</button>
+            <button type="button" (click)="deleteUser(data.id)" class="btn btn-danger btn-sm m-2">Delete</button>
           </td>
         </tr>
       </tbody>

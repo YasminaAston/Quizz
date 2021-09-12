@@ -16,16 +16,18 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.questionForm = this.fb.group({
-      name: [],
-      username: [],
-      email: []
+      label: [],
+      categoryName: [],
+      isCorrect: [],
+      responseName: [],
+      difficulty: []
     });
 
   }
   createQuestion(){
     this.questionService.createQuestion(this.questionForm.value).subscribe({
       next: (res)=>{
-        alert("user created successfully!")
+        alert("question created successfully!")
        console.log(res);
        this.router.navigateByUrl('question/index');
       

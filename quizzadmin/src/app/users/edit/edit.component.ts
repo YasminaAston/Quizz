@@ -36,9 +36,10 @@ export class EditComponent implements OnInit ,OnDestroy{
     debugger
     this.useEditForm=this.fb.group({
       'id':[this.userData.id],
-      'name':[this.userData.name],
-      'username':[this.userData.username],
-      'email':[this.userData.email]
+      'firstname':[this.userData.firstname],
+      'lastname':[this.userData.lastname ],
+      'email':[this.userData.email],
+      'rolename':[this.userData.role.roleName]
     })
   }
 

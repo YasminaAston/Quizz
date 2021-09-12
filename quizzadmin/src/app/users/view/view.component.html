@@ -1,33 +1,13 @@
 <div class="container "  *ngIf=" userData">
-    <!-- <h1>View Post</h1>
-
-    <a href="#" routerLink="/user/index" class="btn btn-primary">Back</a>
-
-    <div>
-        <strong>ID:</strong>
-        <p>{{ userData.id }}</p>
-    </div>
-
-    <div>
-        <strong>Name:</strong>
-        <p>{{ userData.name }}</p>
-    </div>
-
-    <div>
-        <strong>User Name:</strong>
-        <p>{{ userData.username}}</p>
-    </div>
-    <div>
-        <strong>Email:</strong>
-        <p>{{ userData.email}}</p>
-    </div> -->
 
     <div class="card" style="width: 40rem;">
         <div class="card-body">
-          <h5 class="card-title">User:{{ userData.name }} </h5>
+          <h3 class="card-title">User </h3>
          
-          <p class="card-text">Name:{{ userData.username }} </p>
-          <p class="card-text">Name:{{ userData.email }} </p>
+          <p class="card-text">Email:{{ userData.email }} </p>
+          <p class="card-text">Last Name:{{ userData.firstname }} </p>
+          <p class="card-text">First Name:{{ userData.lastname }} </p>
+          <p class="card-text">Role Name:{{ userData.role.roleName }} </p>
           <a routerLink="/user/index" class="btn btn-primary">Back</a>
         
         </div>

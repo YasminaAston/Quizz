@@ -9,8 +9,8 @@ import { IndexComponent } from './users/index/index.component';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import(`./users/users.module`).then(m => m.UsersModule) },
-  { path: '', loadChildren: () => import(`./question/question.module`).then(m => m.UsersModule) },
-  { path: 'home', component: HomeComponent},
+  { path: '', loadChildren: () => import(`./question/question.module`).then(m => m.QuestionsModule) },
+  { path: 'home', component: LoginAdminComponent },
   { path: 'questions', component: IndexComponentQuestion},
   { path: 'users', component: IndexComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full'},
