@@ -11,3 +11,35 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+
+.py-3 {
+  width: 800px;
+  margin: auto;
+}
+
+.row {
+  max-width: 800px;
+  width: 800px;
+  margin: auto;
+}
+
+tr {
+  text-align: center;
+  vertical-align: middle;
+  
+}
+
+thead {
+  background-color: #85bfe0;
+}
+
+
+.btn {
+  width: 80px;
+  height: 30px;
+}
+
+.mat-typography h3 {
+  font-size: 20px;
+  font-weight: 700;
+}

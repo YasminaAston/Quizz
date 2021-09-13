@@ -36,9 +36,11 @@ export class EditComponent implements OnInit ,OnDestroy{
     debugger
     this.useEditForm=this.fb.group({
       'id':[this.questionData.id],
-      'name':[this.questionData.name],
-      'username':[this.questionData.username],
-      'email':[this.questionData.email]
+      'label':[this.questionData.label],
+      'categoryname':[this.questionData.category.name ],
+      'iscorrect':[this.questionData.responses.isCorrect ],
+      'responsename':[this.questionData.responses.label],
+      'difficulty':[this.questionData.difficulty ]
     })
   }
 
@@ -72,5 +74,4 @@ ngOnDestroy(){
 }
   
 }
-
 

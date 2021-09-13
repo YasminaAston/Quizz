@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HttpClientModule} from '@angular/common/http'
 
-import { UsersRoutingModule } from './question-routing.module';
+import { QuestionsRoutingModule } from './question-routing.module';
 import { ViewComponent } from './view/view.component';
 import { CreateComponent } from './create/create.component';
 
@@ -14,9 +14,9 @@ import {ReactiveFormsModule} from '@angular/forms'
   declarations: [ViewComponent, CreateComponent, EditComponent],
   imports: [
     CommonModule,
-    UsersRoutingModule,
+    QuestionsRoutingModule,
     HttpClientModule,
     ReactiveFormsModule
   ]
 })
-export class UsersModule { }
+export class QuestionsModule { }
