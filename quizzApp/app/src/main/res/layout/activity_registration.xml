@@ -85,7 +85,7 @@
             app:drawableStartCompat="@drawable/ic_baseline_lock_24" />
 
         <Button
-            android:id="@+id/login_btn"
+            android:id="@+id/registration_btn"
             android:layout_marginTop="20dp"
             android:layout_width="150dp"
             android:layout_gravity="center"

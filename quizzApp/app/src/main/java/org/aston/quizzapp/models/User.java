@@ -16,6 +16,12 @@ public class User{
 	@SerializedName("lastname")
 	private String lastname;
 
+	@SerializedName("username")
+	private String username;
+
+	@SerializedName("password")
+	private String password;
+
 	@SerializedName("image")
 	private String image;
 
@@ -69,6 +75,18 @@ public class User{
 		this.image = image;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
 	public void setRole(Role role) {
 		this.role = role;
 	}
@@ -78,6 +96,8 @@ public class User{
 		return "User{" +
 				"id=" + id +
 				", firstname='" + firstname + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
 				", email='" + email + '\'' +
 				", lastname='" + lastname + '\'' +
 				", role=" + role +
@@ -85,5 +105,6 @@ public class User{
 	}
 
 	public void setPassword(String password) {
+		this.password = password;
 	}
 }

@@ -6,9 +6,7 @@ import org.aston.quizzapp.security.LoginResponse;
 
 import javax.inject.Inject;
 
-import dagger.hilt.android.scopes.ActivityRetainedScoped;
 import retrofit2.Call;
-import retrofit2.http.Body;
 
 //@ActivityRetainedScoped
 public class UserRepository {
@@ -28,6 +26,14 @@ public class UserRepository {
 
     public Call<LoginResponse> login(LoginRequest request) {
         return userRemoteDataSource.login(request);
+    }
+
+    //public Call<User> registration(RegistrationRequest registrationRequest) {
+      //  return userRemoteDataSource.addUser(registrationRequest);
+    //}
+
+    public Call<User> registration(User user) {
+        return userRemoteDataSource.addUser(user);
     }
 
 }

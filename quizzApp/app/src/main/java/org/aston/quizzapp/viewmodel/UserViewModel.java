@@ -3,7 +3,6 @@ package org.aston.quizzapp.viewmodel;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -19,9 +18,6 @@ import org.aston.quizzapp.models.User;
 import org.aston.quizzapp.security.LoginRequest;
 import org.aston.quizzapp.security.LoginResponse;
 import org.aston.quizzapp.security.SessionManager;
-import org.aston.quizzapp.ui.MainActivity;
-
-import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -121,6 +117,33 @@ public class UserViewModel extends AndroidViewModel {
 
                     }
                 });
+    }
+
+    public void registration(User user) {
+        System.out.println(user);
+         userRepository.registration(user)
+           .enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                System.out.println("cell : " + call);
+                System.out.println("response " + response);
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Vous avez crée un compte vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                    System.out.println("greatSuccess : " + response.body());
+                } else {
+                    System.out.println("onResponseOK but : " + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(context, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                System.out.println("it's a shitshow obviously : " + t);
+            }
+
+        });
+
+
     }
 
 }

@@ -9,8 +9,6 @@ import org.aston.quizzapp.security.LoginResponse;
 import javax.inject.Inject;
 
 import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.http.Body;
 
 public class UserRemoteDataSource {
 
@@ -26,8 +24,9 @@ public class UserRemoteDataSource {
         return userApi.getUserInfos(userId);
     }
 
+
     public Call<User> addUser(User user){
-        return userApi.addUser(user);
+       return userApi.addUser(user);
     }
 
     public Call<LoginResponse> login(LoginRequest request) {

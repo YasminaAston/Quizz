@@ -73,24 +73,7 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
         user.setPassword(password);
         System.out.println(user);
 
-        Call<User> call = createApi().addUser(user);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
 
-                if (response.isSuccessful()) {
-                    String s = response.body().toString();
-                    Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getActivity(), "error brah !", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(getActivity(),t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
 
     }
 
