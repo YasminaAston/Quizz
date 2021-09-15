@@ -25,6 +25,7 @@ export class AuthenticationService {
   }
 
   login(user) {
+    console.log(user);
     return  this.http.post(this.host + "/login", user, { observe: 'response' });
   }
 
@@ -63,6 +64,8 @@ export class AuthenticationService {
       for(let r of this.roles) {
         if(r.authority=='ADMIN'){
           return true;
+        }else {
+          return false;
         }
       }
     }

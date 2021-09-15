@@ -11,7 +11,7 @@ import { User } from '../models/user'
 export class LoginAdminComponent implements OnInit {
 
 
-  
+
     constructor(private authService:AuthenticationService, private router:Router)
     {
       // redirect to home if already logged in
@@ -19,7 +19,7 @@ export class LoginAdminComponent implements OnInit {
         this.router.navigate(['/home']);
       }
     }
-  
+
     ngOnInit(): void {
       if (this.authService.jwtToken != null) {
         this.router.navigate(['/home']);
@@ -30,18 +30,20 @@ export class LoginAdminComponent implements OnInit {
         this.authService.login(formData)
           .subscribe(resp => {
               console.log(formData)
-              let jwtToken = resp.headers.get('authorization');
+            console.log(resp)
+              let jwtToken = resp.body['token'];
+              console.log(jwtToken);
               this.authService.saveToken(jwtToken);
-              this.router.navigateByUrl('/home');
+              this.router.navigateByUrl('/questions');
             },
             err => {
             console.log(err)
               this.router.navigateByUrl('/login');
-    
+
             })
       }
-    
-    } 
-  
+
+    }
+
 
 

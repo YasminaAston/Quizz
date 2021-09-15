@@ -1,31 +1,35 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {AuthenticationService} from "../../service/authentication.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private autService: AuthenticationService) { }
 
   getQuestionData() {
-    const url = 'https://127.0.0.1:8000/api/questions/';
-    return this.http.get(url);
+     if(this.autService.jwtToken == null){
+       this.autService.jwtToken = this.autService.loadToken();
+     }
+    const url = 'http://127.0.0.1:8000/api/questions';
+    return this.http.get(url, {headers: new HttpHeaders({ 'Authorization' : 'Bearer ' + this.autService.jwtToken})} );
   }
   editQuestion(questionData) {
-    const url = `https://127.0.0.1:8000/api/questions/${questionData.id}`;
+    const url = `http://127.0.0.1:8000/api/questions/${questionData.id}`;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json; charset=UTF-8'
       })
     };
 
-    return this.http.put(url, questionData, httpOptions);
+    return this.http.put(url, questionData, httpOption);
   }
 
 
   createQuestion(questionData) {
-    const url = 'https://127.0.0.1:8000/api/questions/';
+    const url = 'http://127.0.0.1:8000/api/questions/';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json; charset=UTF-8'
@@ -36,7 +40,7 @@ export class QuestionsService {
   }
 
   deleteQuestion(id) {
-    const url = `https://127.0.0.1:8000/api/questions/${id}`;
+    const url = `http://127.0.0.1:8000/api/questions/${id}`;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json; charset=UTF-8'
@@ -46,7 +50,7 @@ export class QuestionsService {
   }
 
   getQuestionById(id){
-    const url = `https://127.0.0.1:8000/api/questions/${id}`;
+    const url = `http://127.0.0.1:8000/api/questions/${id}`;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json; charset=UTF-8'
