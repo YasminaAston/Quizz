@@ -24,18 +24,26 @@
 
         <div class="col-12">
           <label for="body">Le thème</label>
-          <input type="text" formControlName="categoryName" id="body" type="text" class="form-control">
-
-          <!-- <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
-              <div *ngIf="f.body.errors.required">Body is required.</div>
-          </div> -->
+          <select class="form-select" aria-label="Default select example">
+              <option selected>Categorie</option>
+              <ng-container *ngFor="let type of data.responses">
+                <option>{{type.label}}</option>
+            </ng-container>
+              
+          </select>
         </div>
 
 
 
         <div class="col-12">
           <label for="body">Difficulté</label>
-          <input type="text" formControlName="difficulty" id="difficulty" type="text" class="form-control">
+          <select class="form-select" aria-label="Default select example">
+              <option selected>Categorie</option>
+              <ng-container *ngFor="let type of data.responses">
+                <option>{{ data.difficulty }}</option>
+            </ng-container>
+              
+          </select>
 
           <!-- <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
               <div *ngIf="f.body.errors.required">Body is required.</div>

@@ -3,7 +3,7 @@ import {QuestionsService } from '../services/questions.service';
 import {FormGroup,FormBuilder,FormControl} from '@angular/forms'
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { CategoriesService } from '../services/categories.service';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -11,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CreateComponent implements OnInit {
   questionForm: FormGroup
+  categories: any;
+  categoryData: any;
 
   constructor(private questionService: QuestionsService ,private fb: FormBuilder,private route:ActivatedRoute,private router:Router) { }
 
@@ -24,17 +26,14 @@ export class CreateComponent implements OnInit {
     });
 
   }
-  createQuestion(){
-    this.questionService.createQuestion(this.questionForm.value).subscribe({
-      next: (res)=>{
-        alert("question created successfully!")
-       console.log(res);
-       this.router.navigateByUrl('question/index');
-      
+  getAllCategories(){
+    this.categories.services.getCategoriesData().subscribe({
+      next:(data)=>{
+        this.categoryData= data
+       console.log(data);
        
       }
-    });
-
+    })
   }
 
 }
