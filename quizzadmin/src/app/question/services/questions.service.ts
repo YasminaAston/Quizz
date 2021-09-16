@@ -24,7 +24,7 @@ export class QuestionsService {
       })
     };
 
-    return this.http.put(url, questionData, httpOption);
+    return this.http.put(url, questionData, httpOptions);
   }
 
 
