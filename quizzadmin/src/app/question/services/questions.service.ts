@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthenticationService} from "../../service/authentication.service";
+import {constants} from "../../healpers/constants";
 
 @Injectable({
   providedIn: 'root'
@@ -29,14 +30,7 @@ export class QuestionsService {
 
 
   createQuestion(questionData) {
-    const url = 'http://127.0.0.1:8000/api/questions/';
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json; charset=UTF-8'
-      })
-    };
-
-    return this.http.post(url, questionData, httpOptions);
+       return this.http.post(constants.apiUrl + '/questions/new', questionData);
   }
 
   deleteQuestion(id) {

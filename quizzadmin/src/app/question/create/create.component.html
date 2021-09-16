@@ -10,39 +10,34 @@
  </div>
 
 
-    <form class="d-flex flex-wrap justify-content-center" [formGroup]="questionForm" (ngSubmit)=" createQuestion()">
+    <form class="d-flex flex-wrap justify-content-center" (ngSubmit)="createQuestion()">
 
       <div class="row">
         <div class="col-12 justify-content-center"> <h4>Ajouter une question</h4> </div>
         <div class="col-12">
           <label>Libellé</label>
-          <input type="text" formControlName="label" id="label" type="text" class="form-control">
-          <!-- <div *ngIf="f.title.touched && f.title.invalid" class="alert alert-danger">
-              <div *ngIf="f.title.errors.required">Title is required.</div>
-          </div> -->
+          <input type="text" name="label" id="label" type="text" class="form-control" [(ngModel)]="questionDto.label">
         </div>
 
         <div class="col-12">
-          <label for="body">Le thème</label>
-          <select class="form-select" aria-label="Default select example">
-              <option selected>Categorie</option>
-              <ng-container *ngFor="let type of data.responses">
-                <option>{{type.label}}</option>
+          <label>Le thème</label>
+          <select class="form-select" aria-label="select le thème" name="categoryId" [(ngModel)]="questionDto.categoryId">
+              <option value="JAVA" selected></option>
+              <ng-container>
+                <option *ngFor="let c of categories; let i = index" class="form-select" [value]="c.id">{{c.name}}</option>
             </ng-container>
-              
+
           </select>
         </div>
 
 
 
         <div class="col-12">
-          <label for="body">Difficulté</label>
-          <select class="form-select" aria-label="Default select example">
-              <option selected>Categorie</option>
-              <ng-container *ngFor="let type of data.responses">
-                <option>{{ data.difficulty }}</option>
-            </ng-container>
-              
+          <label>Difficulté</label>
+          <select ngModel class="form-select" aria-label="Choisir le niveau de difficulté" name="difficulty" [(ngModel)]="questionDto.difficulty">
+              <option value="0" selected>Facile</option>
+            <option value="1">Moyen</option>
+            <option value="2">Difficile</option>
           </select>
 
           <!-- <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
@@ -51,7 +46,7 @@
         </div>
 
         <div class="col-12 mt-2">
-          <input style="width:100%" class="btn btn-primary" type="submit" [disabled]="!questionForm.valid" value="Envoyer">
+          <input style="width:100%" class="btn btn-primary" type="submit" [disabled]="!questionDto" value="Envoyer">
         </div>
       </div>
 
@@ -60,7 +55,7 @@
     </form>
 
 
-  <form class="d-flex flex-wrap justify-content-center" style="display:none">
+  <form class="d-flex flex-wrap justify-content-center" style="display:none !important;">
     <div class=" row">
       <div class="row justify-content-center">
         <p>La question concernée </p>
@@ -71,7 +66,7 @@
           <label>Réponse 1</label>
         </div>
         <div class="col-sm-8">
-          <input type="text" formControlName="responseName" type="text" class="form-control">
+          <input type="text" name="responseName" type="text" class="form-control">
         </div>
         <div class="col-sm">
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
@@ -88,7 +83,7 @@
           <label>Réponse 2</label>
         </div>
         <div class="col-sm-8">
-          <input type="text" formControlName="responseName" type="text" class="form-control">
+          <input type="text" name="responseName" type="text" class="form-control">
         </div>
        <div class="col-sm">
          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
@@ -104,7 +99,7 @@
           <label>Réponse 3</label>
         </div>
         <div class="col-sm-8">
-          <input type="text" formControlName="responseName" type="text" class="form-control">
+          <input type="text" name="responseName" type="text" class="form-control">
         </div>
         <div class="col-sm">
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
@@ -120,19 +115,15 @@
           <label>Réponse 4</label>
         </div>
         <div class="col-sm-8">
-          <input type="text" formControlName="responseName" type="text" class="form-control">
+          <input type="text" name="responseName" type="text" class="form-control">
         </div>
         <div class="col-sm">
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
           <label class="" style="padding-left: 5px">Correct</label>
         </div>
-
-        <!-- <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
-            <div *ngIf="f.body.errors.required">Body is required.</div>
-        </div> -->
       </div>
       <div class="row mt-2">
-        <input style="width:100%" class="btn btn-primary" type="submit" [disabled]="!questionForm.valid" value="Envoyer">
+        <input style="width:100%" class="btn btn-primary" type="submit" [disabled]="!questionDto" value="Envoyer">
       </div>
     </div>
 

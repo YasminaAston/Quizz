@@ -14,7 +14,7 @@ class QuestionDto
     private $difficulty;
 
 
-    private $categoryId;
+    private ?int $categoryId;
 
     public function getId(): ?int
     {

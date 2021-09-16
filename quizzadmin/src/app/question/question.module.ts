@@ -7,16 +7,17 @@ import { ViewComponent } from './view/view.component';
 import { CreateComponent } from './create/create.component';
 
 import { EditComponent } from './edit/edit.component';
-import {ReactiveFormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 
 @NgModule({
   declarations: [ViewComponent, CreateComponent, EditComponent],
-  imports: [
-    CommonModule,
-    QuestionsRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        QuestionsRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule
+    ]
 })
 export class QuestionsModule { }

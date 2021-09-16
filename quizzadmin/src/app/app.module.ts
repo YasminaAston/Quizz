@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 ;
 import { IndexComponentQuestion} from './question/index/index.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import {JwtInterceptor} from "./healpers/JwtInterceptor";
+import {ErrorInterceptor} from "./healpers/ErrorInterceptor";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -32,9 +35,11 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    AppRoutingModule,HttpClientModule, FormsModule
+    AppRoutingModule, HttpClientModule, FormsModule
   ],
-  providers: [],
+  providers: [Title, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
