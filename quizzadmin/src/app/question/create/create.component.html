@@ -1,5 +1,5 @@
 <div class="question-create">
- <div class="d-flex flex-wrap justify-content-between">
+ <div class="d-flex flex-wrap justify-content-between m-3">
    <div class="col-6">
      <h4>Create New Question </h4>
 
@@ -9,7 +9,7 @@
    </div>
  </div>
 
-
+  <div class="card m-3 p-3">
     <form class="d-flex flex-wrap justify-content-center" (ngSubmit)="createQuestion()">
 
       <div class="row">
@@ -50,10 +50,11 @@
         </div>
       </div>
 
-
-
     </form>
+</div>
 
+
+<div class="card m-3 p-3">
 
   <form class="d-flex flex-wrap justify-content-center" style="display:none;">
     <div class=" row">
@@ -62,26 +63,24 @@
         <h4>Ajouter les réponses</h4>
       </div>
       <div class="row mb-3">
+
         <div class="col-sm">
           <label>Réponse 1</label>
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8 mb-3">
           <input type="text" name="responseName" type="text" class="form-control">
         </div>
         <div class="col-sm">
           <label> <input type="radio" (change)="responseStatus($event)" name="btn" checked></label>
         </div>
 
-        <!-- <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
-            <div *ngIf="f.body.errors.required">Body is required.</div>
-        </div> -->
       </div>
 
       <div class="row mb-3">
         <div class="col-sm">
           <label>Réponse 2</label>
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8 mb-3">
           <input type="text" name="responseName" type="text" class="form-control">
         </div>
         <div class="col-sm">
@@ -96,7 +95,7 @@
         <div class="col-sm">
           <label>Réponse 3</label>
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8 mb-3">
           <input type="text" name="responseName" type="text" class="form-control">
         </div>
         <div class="col-sm">
@@ -111,18 +110,18 @@
         <div class="col-sm">
           <label>Réponse 4</label>
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8 mb-3">
           <input type="text" name="responseName" type="text" class="form-control">
         </div>
         <div class="col-sm">
           <label> <input type="radio" (change)="responseStatus($event)" name="btn"></label>
         </div>
       </div>
-      <div class="row mt-2">
-        <input style="width:100%" class="btn btn-primary" type="submit" [disabled]="!questionDto" value="Envoyer">
+      <div class="row mb-4">
+        <button class="btn btn-primary" style="height:auto;" type="submit" [disabled]="!questionDto" >Envoyer</button>
       </div>
     </div>
 
   </form>
-
+</div>
 </div>

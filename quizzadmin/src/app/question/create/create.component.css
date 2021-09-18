@@ -17,7 +17,6 @@ input[type="radio"] {
   position: relative;
   width: 120px;
   height: 40px;
-  margin: 10px;
   outline: none;
   color: #fff;
  /* background: #ff3b30; */
@@ -58,7 +57,7 @@ input[type="radio"]::before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 90px;
+  width: 80px;
   height: 40px;
   padding-top: 8px;
   text-align: center;
