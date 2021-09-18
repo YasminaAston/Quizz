@@ -8,6 +8,7 @@ import androidx.navigation.Navigation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -55,6 +56,11 @@ public class LoginActivity extends AppCompatActivity {
             System.out.println("game page ! ");
             loginBinding.setLifecycleOwner(this);
         }
+        sessionManager = new SessionManager(getApplicationContext());
+        if(!sessionManager.fetchAuthToken().equals(null)) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
 
         loginBtn = findViewById(R.id.login_btn);
         //// login opération ///// + token saved automatic
@@ -77,7 +83,15 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if(isEmailValid && isPasswordValid) {
+
                 userViewModel.onLogin(new LoginRequest(email, pwd));
+               String token = sessionManager.fetchAuthToken();
+                System.out.println("token");
+                System.out.println(token);
+               if (!token.equals(null)) {
+                   Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                   startActivity(intent);
+               }
             }
     });
 

@@ -1,5 +1,6 @@
 package org.aston.quizzapp.data;
 
+import org.aston.quizzapp.dto.UserDto;
 import org.aston.quizzapp.models.User;
 import org.aston.quizzapp.security.LoginRequest;
 import org.aston.quizzapp.security.LoginResponse;
