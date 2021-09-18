@@ -9,9 +9,11 @@ import androidx.navigation.Navigation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.aston.quizzapp.R;
 import org.aston.quizzapp.data.UserRepository;
@@ -37,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
     private UserViewModel userViewModel;
     public SessionManager sessionManager;
     private ActivityLoginBinding loginBinding;
+    private boolean isEmailValid;
+    private boolean isPasswordValid;
 
 
     @Override
@@ -57,7 +61,24 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(v -> {
             String email = loginBinding.emailEt.getText().toString();
             String pwd = loginBinding.passwordEt.getText().toString();
-            userViewModel.onLogin(new LoginRequest(email, pwd));
+
+            if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                isEmailValid = false;
+                Toast.makeText(LoginActivity.this, "Veuillez renseigner une adresse mail valide", Toast.LENGTH_LONG).show();
+            } else  {
+                isEmailValid = true;
+            }
+
+            if (pwd.isEmpty() || pwd.length() < 4) {
+                isPasswordValid = false;
+                Toast.makeText(LoginActivity.this, "Veuillez renseigner un mot de passe d'au moins 4 caractères", Toast.LENGTH_LONG).show();
+            } else  {
+                isPasswordValid = true;
+            }
+
+            if(isEmailValid && isPasswordValid) {
+                userViewModel.onLogin(new LoginRequest(email, pwd));
+            }
     });
 
         registerMeLink = findViewById(R.id.register_me_link_textview);
