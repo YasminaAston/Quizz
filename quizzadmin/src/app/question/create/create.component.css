@@ -1,14 +1,75 @@
 .back {
     float: right;
     margin-bottom: 10px;
- 
-   
+
+
 }
 
 .new-create{
-    float: left; 
-    margin-bottom: 10px; 
+    float: left;
+    margin-bottom: 10px;
 }
 form{
     clear: both;
+}
+
+input[type="radio"] {
+  position: relative;
+  width: 120px;
+  height: 40px;
+  outline: none;
+  color: #fff;
+ /* background: #ff3b30; */
+  background: #f21609;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.1),
+              2px 2px 5px rgba(255, 59, 48, 1),
+              inset -2px -2px 5px rgba(255, 255, 255, 0.1),
+              inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.1),
+               2px 2px 5px rgba(255, 59, 48, 1),
+               inset -2px -2px 5px rgba(255, 255, 255, 0.1),
+               inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: .5s;
+  box-shadow: 0 0 0 1px #d52218;
+}
+
+
+input[type="radio"]:checked {
+  background: #4cd964;
+  box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.1),
+              2px 2px 5px rgba(76, 217, 100, 1),
+              inset -2px -2px 5px rgba(255, 255, 255, 0.1),
+              inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.1),
+              2px 2px 5px rgba(76, 217, 100, 1),
+              inset -2px -2px 5px rgba(255, 255, 255, 0.1),
+              inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: .5s;
+  box-shadow: 0 0 0 1px #39d053;
+}
+
+input[type="radio"]::before {
+  content: "Incorrect";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 40px;
+  padding-top: 8px;
+  text-align: center;
+  border-radius: 20px;
+  background: linear-gradient(to top, #f21609, #b22921);
+  box-shadow: 0 0 0 1px #d52218;
+}
+
+input[type="radio"]:checked::before {
+  content: "Correct";
+  left: 40px;
+  color: #fff;
+  box-shadow: 0 0 0 1px #39d053;
+  background: linear-gradient(to top, #4cd964, #289c3d);
 }
