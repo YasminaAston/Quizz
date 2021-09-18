@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthenticationService} from "../../service/authentication.service";
 import {constants} from "../../healpers/constants";
+import {Question} from "../../models/question";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +31,8 @@ export class QuestionsService {
   }
 
 
-  createQuestion(questionData) {
-       return this.http.post(constants.apiUrl + '/questions/new', questionData);
+  createQuestion(questionData) :Observable<Question>{
+       return this.http.post<Question>(constants.apiUrl + '/questions/new', questionData);
   }
 
   deleteQuestion(id) {

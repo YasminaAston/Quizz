@@ -3,6 +3,10 @@ import {QuestionsService } from '../services/questions.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import {Category} from "../../models/category";
+import {Question} from "../../models/question";
+import {Response} from "../../models/response";
+import {ResponseDto} from "../../models/responseDto";
+import {ResponseService} from "../../service/response.service";
 
 
 class QuestionDto {
@@ -19,10 +23,12 @@ class QuestionDto {
 export class CreateComponent implements OnInit {
   questionDto: QuestionDto = new QuestionDto();
   categories: Category [] = [];
-  checked: boolean = false;
+  question: Question = null;
+  created: boolean = false;
+  responseCorrectNumber: number = 1;
   constructor(private questionService: QuestionsService,
               private route:ActivatedRoute,private router:Router,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService, private responseService: ResponseService) { }
 
   ngOnInit(): void {
     console.log(this.questionDto);
@@ -50,13 +56,41 @@ export class CreateComponent implements OnInit {
     this.questionService.createQuestion(question).subscribe(data => {
       console.log("question ajoutée avec succès");
       console.log(data);
+      this.question = data;
+      this.created = true;
     }, err => {
       console.log(err);
     })
 
   }
 
-  responseStatus($event: Event) {
-  console.log($event.target);
+  responseStatus(value) {
+  console.log(value);
+  this.responseCorrectNumber = value;
+  }
+
+  onCreateResponses(value: any) {
+    console.log(value);
+    let responses: Array<any> = this.getValues(value);
+    console.log(responses)
+    console.log(this.responseCorrectNumber);
+    for (let i = 0; i < responses.length; i++){
+      let responseDto: ResponseDto = new ResponseDto();
+      responseDto.label = responses[i];
+      responseDto.questionId = this.question.id;
+      if (i === (this.responseCorrectNumber -1)){
+        responseDto.isCorrect = true;
+      }
+      this.responseService.addResponse(responseDto).subscribe(data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      })
+    }
+    this.router.navigateByUrl('/questions')
+  }
+
+  getValues(map){
+    return Array.from(Object.values(map));
   }
 }

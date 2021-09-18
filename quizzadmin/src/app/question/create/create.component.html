@@ -9,7 +9,7 @@
    </div>
  </div>
 
-  <div class="card m-3 p-3">
+  <div class="card m-3 p-3" *ngIf="!created">
     <form class="d-flex flex-wrap justify-content-center" (ngSubmit)="createQuestion()">
 
       <div class="row">
@@ -54,12 +54,12 @@
 </div>
 
 
-<div class="card m-3 p-3">
+<div class="card m-3 p-3" *ngIf="created">
 
-  <form class="d-flex flex-wrap justify-content-center" style="display:none;">
+  <form class="d-flex flex-wrap justify-content-center" #f="ngForm" (ngSubmit)="onCreateResponses(f.value)">
     <div class=" row">
       <div class="row justify-content-center">
-        <p>La question concernée </p>
+        <p>la Questoin: {{ question.label }}</p>
         <h4>Ajouter les réponses</h4>
       </div>
       <div class="row mb-3">
@@ -68,10 +68,10 @@
           <label>Réponse 1</label>
         </div>
         <div class="col-md-8 mb-3">
-          <input type="text" name="responseName" type="text" class="form-control">
+          <input type="text" name="responseOne" type="text" class="form-control" ngModel>
         </div>
         <div class="col-sm">
-          <label> <input type="radio" (change)="responseStatus($event)" name="btn" checked></label>
+          <label> <input type="radio" (change)="responseStatus($event.target.value)" name="correct" value="1" checked></label>
         </div>
 
       </div>
@@ -81,10 +81,10 @@
           <label>Réponse 2</label>
         </div>
         <div class="col-md-8 mb-3">
-          <input type="text" name="responseName" type="text" class="form-control">
+          <input type="text" type="text" class="form-control" name="responseTow" ngModel>
         </div>
         <div class="col-sm">
-          <label> <input type="radio" (change)="responseStatus($event)" name="btn"></label>
+          <label> <input type="radio" (change)="responseStatus($event.target.value)" value="2" name="correct"></label>
         </div>
 
         <!-- <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
@@ -96,10 +96,10 @@
           <label>Réponse 3</label>
         </div>
         <div class="col-md-8 mb-3">
-          <input type="text" name="responseName" type="text" class="form-control">
+          <input type="text" type="text" class="form-control" name="responseThree" ngModel>
         </div>
         <div class="col-sm">
-          <label> <input type="radio" (change)="responseStatus($event)" name="btn"></label>
+          <label> <input type="radio" (change)="responseStatus($event.target.value)" value="3" name="correct"></label>
         </div>
 
         <!-- <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
@@ -111,14 +111,14 @@
           <label>Réponse 4</label>
         </div>
         <div class="col-md-8 mb-3">
-          <input type="text" name="responseName" type="text" class="form-control">
+          <input type="text" type="text" class="form-control" name="responseFour" ngModel>
         </div>
         <div class="col-sm">
-          <label> <input type="radio" (change)="responseStatus($event)" name="btn"></label>
+          <label> <input type="radio" (change)="responseStatus($event.target.value)" value="4" name="correct"></label>
         </div>
       </div>
       <div class="row mb-4">
-        <button class="btn btn-primary" style="height:auto;" type="submit" [disabled]="!questionDto" >Envoyer</button>
+        <button class="btn btn-primary" style="height:auto;" type="submit" >Envoyer</button>
       </div>
     </div>
 
