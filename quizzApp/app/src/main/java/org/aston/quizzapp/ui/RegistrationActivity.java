@@ -90,6 +90,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(RegistrationActivity.this, "Vous avez crée un compte vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
                     System.out.println("greatSuccess : " + response.body());
+                    Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 } else {
                     System.out.println("onTheResponseOK but : " + response.body());
                 }
@@ -97,7 +99,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                System.out.println("it's a shitshow obviously : " + t);
+                System.out.println("registration didn't worked" + t);
             }
         });
 

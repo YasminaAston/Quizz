@@ -3,7 +3,7 @@ package org.aston.quizzapp.util;
 public class Constants {
 
 
-    public static final String API_URL = "http:/192.168.32.1:8000/api/";
+    public static final String API_URL = "http:/172.26.112.1:8000/api/";
 
 
     //Fouzia public static final String API_URL = "http://192.168.1.19:8000/";
