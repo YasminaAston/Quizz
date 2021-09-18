@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,6 +35,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button registrationBtn;
     private TextView backToLoginTv;
     public SessionManager sessionManager;
+    private boolean isEmailValid;
+    private boolean isPasswordValid;
+    private boolean areUserNamesValid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,6 @@ public class RegistrationActivity extends AppCompatActivity {
         registrationBtn = findViewById(R.id.registration_btn);
         registrationBtn.setOnClickListener(v -> {
             SignUp();
-
         });
     }
 
@@ -65,44 +68,64 @@ public class RegistrationActivity extends AppCompatActivity {
         String email = registrationBinding.emailEt.getText().toString();
         String password = registrationBinding.passwordEt.getText().toString();
 
-        User user = new User();
-        user.setEmail(email);
-        user.setFirstname(firstname);
-        user.setLastname(lastname);
-        user.setUsername(username);
-        user.setPassword(password);
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            isEmailValid = false;
+            Toast.makeText(RegistrationActivity.this, "Veuillez renseigner une adresse mail valide", Toast.LENGTH_LONG).show();
+        } else  {
+            isEmailValid = true;
+        }
 
-        //userViewModel.registration(new RegistrationRequest(firstname, lastname,username, email, password));
-        //userViewModel.registration(user);
+        if (password.isEmpty() || password.length() < 4) {
+            isPasswordValid = false;
+            Toast.makeText(RegistrationActivity.this, "Veuillez renseigner un mot de passe d'au moins 4 caractères", Toast.LENGTH_LONG).show();
+        } else  {
+            isPasswordValid = true;
+        }
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(Constants.API_URL)
-                .addConverterFactory(GsonConverterFactory.create());
+        if (firstname.length() > 3 && lastname.length() > 3 && username.length() > 3) {
+            areUserNamesValid = true;
+        } else {
+            Toast.makeText(RegistrationActivity.this, "Veuillez renseigner un prénom, nom et nom d'utilisateur d'au moins 3 caractères", Toast.LENGTH_LONG).show();
+            areUserNamesValid = false;
+        }
 
-        Retrofit retrofit = builder.build();
+        if (isEmailValid && isPasswordValid && areUserNamesValid ) {
+            User user = new User();
+            user.setEmail(email);
+            user.setFirstname(firstname);
+            user.setLastname(lastname);
+            user.setUsername(username);
+            user.setPassword(password);
 
-        UserApi userApi = retrofit.create(UserApi.class);
-        Call<User> call = userApi.addUser(user);
+            //userViewModel.registration(new RegistrationRequest(firstname, lastname,username, email, password));
+            //userViewModel.registration(user);
 
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(RegistrationActivity.this, "Vous avez crée un compte vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
-                    System.out.println("greatSuccess : " + response.body());
-                    Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                } else {
-                    System.out.println("onTheResponseOK but : " + response.body());
+            Retrofit.Builder builder = new Retrofit.Builder()
+                    .baseUrl(Constants.API_URL)
+                    .addConverterFactory(GsonConverterFactory.create());
+
+            Retrofit retrofit = builder.build();
+
+            UserApi userApi = retrofit.create(UserApi.class);
+            Call<User> call = userApi.addUser(user);
+
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(RegistrationActivity.this, "Vous avez crée un compte vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
+                        System.out.println("greatSuccess : " + response.body());
+                        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    } else {
+                        System.out.println("onResponseOK but : " + response.body());
+                    }
                 }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                System.out.println("registration didn't worked" + t);
-            }
-        });
-
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("registration didn't worked beacause : " + t);
+                }
+            });
+        }
     }
-
 }
