@@ -19,7 +19,7 @@ class QuestionDto {
 export class CreateComponent implements OnInit {
   questionDto: QuestionDto = new QuestionDto();
   categories: Category [] = [];
-
+  checked: boolean = false;
   constructor(private questionService: QuestionsService,
               private route:ActivatedRoute,private router:Router,
               private categoryService: CategoryService) { }
@@ -54,5 +54,9 @@ export class CreateComponent implements OnInit {
       console.log(err);
     })
 
+  }
+
+  responseStatus($event: Event) {
+  console.log($event.target);
   }
 }
