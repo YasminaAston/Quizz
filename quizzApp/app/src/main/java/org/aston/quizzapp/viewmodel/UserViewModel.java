@@ -14,6 +14,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import org.aston.quizzapp.data.UserRepository;
+import org.aston.quizzapp.dto.UserDto;
 import org.aston.quizzapp.models.User;
 import org.aston.quizzapp.security.LoginRequest;
 import org.aston.quizzapp.security.LoginResponse;
@@ -99,7 +100,7 @@ public class UserViewModel extends AndroidViewModel {
                                 LoginResponse loginResponse = response.body();
                                 sessionManager = new SessionManager(context);
                                 sessionManager.saveAuthToken(loginResponse.getToken());
-                                userMutableLiveData.setValue(loginResponse.getUser());
+
                                 System.out.println("//////////////authentication successfully //////////////////////////");
                                 System.out.println(response.body());
                             } else {
@@ -128,6 +129,7 @@ public class UserViewModel extends AndroidViewModel {
                 System.out.println("cell : " + call);
                 System.out.println("response " + response);
                 if (response.isSuccessful()) {
+                    userMutableLiveData.setValue(response.body());
                     Toast.makeText(context, "Vous avez crée un compte vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
                     System.out.println("greatSuccess : " + response.body());
                 } else {

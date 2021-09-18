@@ -2,6 +2,7 @@ package org.aston.quizzapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -46,6 +47,11 @@ public class RegistrationActivity extends AppCompatActivity {
         registrationBinding = DataBindingUtil.setContentView(this, R.layout.activity_registration);
         userViewModel = (UserViewModel) new ViewModelProvider(this).get(UserViewModel.class);
 
+        if (registrationBinding != null) {
+            System.out.println("registration page ! ");
+            registrationBinding.setLifecycleOwner(this);
+        }
+
         backToLoginTv = findViewById(R.id.back_to_login_link_tv);
         backToLoginTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,73 +65,56 @@ public class RegistrationActivity extends AppCompatActivity {
         registrationBtn.setOnClickListener(v -> {
             SignUp();
         });
+
+        userViewModel.userMutableLiveData.observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if(user != null){
+                    System.out.println("user ////////////////// ");
+                    System.out.println(user);
+                    Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void SignUp() {
         String firstname = registrationBinding.firstnameEt.getText().toString();
         String lastname = registrationBinding.lastnameEt.getText().toString();
-        String username = registrationBinding.usernameEt.getText().toString();
         String email = registrationBinding.emailEt.getText().toString();
         String password = registrationBinding.passwordEt.getText().toString();
 
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             isEmailValid = false;
             Toast.makeText(RegistrationActivity.this, "Veuillez renseigner une adresse mail valide", Toast.LENGTH_LONG).show();
-        } else  {
+        } else {
             isEmailValid = true;
         }
 
         if (password.isEmpty() || password.length() < 4) {
             isPasswordValid = false;
             Toast.makeText(RegistrationActivity.this, "Veuillez renseigner un mot de passe d'au moins 4 caractères", Toast.LENGTH_LONG).show();
-        } else  {
+        } else {
             isPasswordValid = true;
         }
 
-        if (firstname.length() > 3 && lastname.length() > 3 && username.length() > 3) {
+        if (firstname.length() > 3 && lastname.length() > 3) {
             areUserNamesValid = true;
         } else {
             Toast.makeText(RegistrationActivity.this, "Veuillez renseigner un prénom, nom et nom d'utilisateur d'au moins 3 caractères", Toast.LENGTH_LONG).show();
             areUserNamesValid = false;
         }
 
-        if (isEmailValid && isPasswordValid && areUserNamesValid ) {
+        if (isEmailValid && isPasswordValid && areUserNamesValid) {
             User user = new User();
             user.setEmail(email);
             user.setFirstname(firstname);
             user.setLastname(lastname);
-            user.setUsername(username);
             user.setPassword(password);
 
-            //userViewModel.registration(new RegistrationRequest(firstname, lastname,username, email, password));
-            //userViewModel.registration(user);
-
-            Retrofit.Builder builder = new Retrofit.Builder()
-                    .baseUrl(Constants.API_URL)
-                    .addConverterFactory(GsonConverterFactory.create());
-
-            Retrofit retrofit = builder.build();
-
-            UserApi userApi = retrofit.create(UserApi.class);
-            Call<User> call = userApi.addUser(user);
-
-            call.enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    if (response.isSuccessful()) {
-                        Toast.makeText(RegistrationActivity.this, "Vous avez crée un compte vous pouvez maintenant vous connecter", Toast.LENGTH_LONG).show();
-                        System.out.println("greatSuccess : " + response.body());
-                        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    } else {
-                        System.out.println("onResponseOK but : " + response.body());
-                    }
-                }
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-                    System.out.println("registration didn't worked beacause : " + t);
-                }
-            });
+            userViewModel.registration(user);
         }
     }
+
 }

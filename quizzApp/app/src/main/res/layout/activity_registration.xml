@@ -52,17 +52,6 @@
             app:drawableStartCompat="@drawable/ic_baseline_person_outline_24" />
 
         <EditText
-            android:id="@+id/username_et"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:hint="@string/username_hint"
-            android:textSize="20sp"
-            android:drawablePadding="10dp"
-            app:drawableStartCompat="@drawable/ic_baseline_games_24" />
-
-        <EditText
             android:id="@+id/email_et"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
