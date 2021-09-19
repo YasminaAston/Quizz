@@ -6,11 +6,13 @@ import org.aston.quizzapp.models.User;
 
 public class LoginResponse {
     @SerializedName("statusCode")
-    public int statusCode;
+    private int statusCode;
     @SerializedName("token")
-    public String token;
+    private String token;
     @SerializedName("user")
-    public User user;
+    private User user;
+    @SerializedName("refresh_token")
+    private String refresh_token;
 
     public int getStatusCode() {
         return statusCode;
@@ -47,5 +49,13 @@ public class LoginResponse {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getRefresh_token() {
+        return refresh_token;
+    }
+
+    public void setRefresh_token(String refresh_token) {
+        this.refresh_token = refresh_token;
     }
 }

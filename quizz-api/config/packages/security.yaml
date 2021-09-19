@@ -10,6 +10,11 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
+        # put it before all your other firewall API entries
+        refresh:
+            pattern: ^/api/token/refresh
+            stateless: true
+            anonymous: true
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -38,6 +43,7 @@ security:
     access_control:
         - { path: ^/api/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
         - { path: ^/api/users/new, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/games, roles: IS_AUTHENTICATED_FULLY }

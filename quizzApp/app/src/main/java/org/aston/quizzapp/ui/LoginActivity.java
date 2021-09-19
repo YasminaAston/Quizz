@@ -57,10 +57,12 @@ public class LoginActivity extends AppCompatActivity {
             loginBinding.setLifecycleOwner(this);
         }
         sessionManager = new SessionManager(getApplicationContext());
+        /*
         if(!sessionManager.fetchAuthToken().equals(null)) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
+         */
 
         loginBtn = findViewById(R.id.login_btn);
         //// login opération ///// + token saved automatic
