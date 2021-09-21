@@ -1,5 +1,6 @@
 package org.aston.quizzapp.data.network;
 
+import org.aston.quizzapp.dto.QuizzRespnse;
 import org.aston.quizzapp.models.Game;
 import org.aston.quizzapp.models.Quizz;
 
@@ -15,7 +16,7 @@ public interface QuizzApi {
 
 
     @PUT("quizzes/{id}/update")
-    Call<Quizz> updateQuizz(@Body Quizz quizz, @Path("id") int quizzId);
+    Call<Quizz> updateQuizz(@Body QuizzRespnse quizzRespnse, @Path("id") int quizzId);
 
     @GET("quizzes/{id}")
     Call<Quizz> getQuizz(@Path("id") int quizzId);

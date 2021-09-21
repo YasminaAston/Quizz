@@ -25,13 +25,13 @@ class Score
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"quizz"})
+     * @Groups({"question", "quizz"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"quizz"})
+     * @Groups({"question", "quizz"})
      */
     private $score;
 

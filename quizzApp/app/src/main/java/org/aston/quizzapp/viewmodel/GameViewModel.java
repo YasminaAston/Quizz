@@ -84,12 +84,14 @@ public class GameViewModel extends AndroidViewModel {
         if (hasInternaetConnection()){
             try {
                 System.out.println("Start get game");
-                Call<Game> gameResponse = gameRepository.getGame(1);
+                Call<Game> gameResponse = gameRepository.getGame(gameId);
                 gameResponse.enqueue(new Callback<Game>() {
                     @Override
                     public void onResponse(Call<Game> call, Response<Game> response) {
                         if(response.isSuccessful()){
                             game.setValue(response.body());
+                            System.out.println("game ici changed :*** vm ");
+                            System.out.println(game);
                         }
                     }
 

@@ -46,7 +46,7 @@ class Question
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
      * @ORM\JoinColumn(name="category_id", nullable=false, referencedColumnName="id")
-     * @Groups("question")
+     * @Groups({"question", "quizz"})
      */
     private $category;
 

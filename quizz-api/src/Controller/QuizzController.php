@@ -3,14 +3,17 @@
 namespace App\Controller;
 
 use App\Dto\QuizzDto;
+use App\Dto\QuizzRespnseDto;
 use App\Entity\Category;
 use App\Entity\Game;
 use App\Entity\Quizz;
+use App\Entity\Score;
 use App\Form\QuizzType;
 use App\Repository\CategoryRepository;
 use App\Repository\GameRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\QuizzRepository;
+use App\Repository\ScoreRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -29,14 +32,20 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class QuizzController extends AbstractController
 {
     protected QuizzRepository $quizzRepository;
-
+    protected GameRepository $gameRepository;
+    protected ScoreRepository $scoreRepository;
     /**
      * QuizzController constructor.
      * @param QuizzRepository $quizzRepository
+     * @param GameRepository $gameRepository
+     * @param ScoreRepository $scoreRepository
      */
-    public function __construct(QuizzRepository $quizzRepository)
+    public function __construct(QuizzRepository $quizzRepository,
+                                GameRepository $gameRepository, ScoreRepository $scoreRepository)
     {
         $this->quizzRepository = $quizzRepository;
+        $this->gameRepository = $gameRepository;
+        $this->scoreRepository = $scoreRepository;
     }
     /**
      * @Route("/", name="quizz_index", methods={"GET"})
@@ -45,7 +54,7 @@ class QuizzController extends AbstractController
     {
         $quizzes = $this->quizzRepository->findAll();
         if (sizeof($quizzes) > 0){
-            return $this -> json($quizzes, 200, [], ['groups'=>['quizz']]);
+            return $this -> json($quizzes, 200, [], ['groups'=>['question', 'quizz']]);
         }else {
             return $this -> json(['status'=> Response::HTTP_OK, 'message'=> 'Entity quizz is empty'], 200);
         }
@@ -60,7 +69,7 @@ class QuizzController extends AbstractController
         if(!$quizz){
             return $this-> json(['status'=> Response::HTTP_NOT_FOUND, 'message'=> 'Quizz Not Found '] , 404, []);
         }
-        return  $this->json($quizz, 200, [], ['groups'=>['quizz']]);
+        return  $this->json($quizz, 200, [], ['groups'=>['question', 'quizz']]);
     }
 
     /**
@@ -100,7 +109,7 @@ class QuizzController extends AbstractController
             }
             $entityManager->persist($game);
             $entityManager->flush();
-            return  $this -> json($game, 200, [], ['groups'=>['quizz']]);
+            return  $this -> json($game, 200, [], ['groups'=>['question', 'quizz']]);
         }else {
             return $this -> json(['status'=> Response::HTTP_OK, 'message'=> 'Entity question is empty'], 200);
         }
@@ -121,7 +130,7 @@ class QuizzController extends AbstractController
         $quizz = $this-> quizzRepository->find($id);
         // deserialize the json
         try {
-            $quizzData = $serializer->deserialize($request->getContent(), Quizz::class, 'json');
+            $quizzData = $serializer->deserialize($request->getContent(), QuizzRespnseDto::class, 'json');
         } catch (NotEncodableValueException $exception) {
             return $this-> json(['status'=> Response::HTTP_BAD_REQUEST, 'message'=> 'Bad request '] , 400, []);
         }
@@ -134,11 +143,34 @@ class QuizzController extends AbstractController
 
         }
 
-        $quizz->setIsCorrect($quizzData->getIsCorrect());
+        $quizz = $this-> quizzRepository-> find($quizzData->getQuizzId());
+        if(!$quizz){
+            return $this-> json(['status'=> Response::HTTP_NOT_FOUND, 'message'=> 'Quizz Not Found '] , 404, []);
+        }
         $entityManager = $this->getDoctrine()->getManager();
+        $game = $this->gameRepository->find($quizzData->getGameId());
+        $score = null;
+        if ($game->getScore()){
+            $score = $this->scoreRepository->find($game->getScore()->getId());
+        }
+
+        if($score == null && $quizzData->isCorrect()){
+            $score = new Score();
+            $score->setScore(1);
+        }else if($score != null && $quizzData->isCorrect()){
+            $score->setScore(($score->getScore()+1));
+        }
+        $entityManager->persist($score);
+        $entityManager->flush();
+        $game->setScore($score);
+
+        $quizz->setIsCorrect($quizzData->isCorrect());
+
+        $entityManager->persist($game);
+        $entityManager->flush();
         $entityManager->persist($quizz);
         $entityManager->flush();
-        return  $this -> json($quizz, 200, [], ['groups'=>['quizz']]);
+        return  $this -> json($quizz, 200, [], ['groups'=>['question', 'quizz']]);
     }
 
     /**

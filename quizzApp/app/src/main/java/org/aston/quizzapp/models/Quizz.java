@@ -13,6 +13,7 @@ public class Quizz {
 	@SerializedName("isCorrect")
 	private boolean isCorrect;
 
+
 	// getters
 	public Question getQuestion(){
 		return question;
@@ -38,6 +39,11 @@ public class Quizz {
 	public void setCorrect(boolean correct) {
 		isCorrect = correct;
 	}
+
+	public boolean isCorrect() {
+		return isCorrect;
+	}
+
 
 	@Override
 	public String toString() {

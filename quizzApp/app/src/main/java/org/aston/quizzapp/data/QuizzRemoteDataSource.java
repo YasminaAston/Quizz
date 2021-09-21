@@ -2,6 +2,7 @@ package org.aston.quizzapp.data;
 
 
 import org.aston.quizzapp.data.network.QuizzApi;
+import org.aston.quizzapp.dto.QuizzRespnse;
 import org.aston.quizzapp.models.Quizz;
 
 import javax.inject.Inject;
@@ -23,8 +24,8 @@ public class QuizzRemoteDataSource {
         return quizzApi.getQuizz(quizzId);
     }
 
-    public Call<Quizz> updateQuizz(Quizz quizz, Integer quizzId){
-        return quizzApi.updateQuizz(quizz, quizzId);
+    public Call<Quizz> updateQuizz(QuizzRespnse quizzRespnse, Integer quizzId){
+        return quizzApi.updateQuizz(quizzRespnse, quizzId);
     }
 
 }
